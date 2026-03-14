@@ -2,18 +2,27 @@ aid: orbital
 url: >-
   https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/apis.yml
 apis:
-  - aid: orbital:orbital
-    name: Orbital
+  - aid: orbital:query-api
+    name: Orbital Query API
     tags:
       - Gateways
       - Data
-    humanURL: ' https://orbitalhq.com/'
+      - Integration
+      - Queries
+    humanURL: https://orbitalhq.com/docs/querying/writing-queries
     properties:
-      - url: ' https://orbitalhq.com/'
+      - url: https://orbitalhq.com/docs/querying/writing-queries
         type: Documentation
+      - url: >-
+          https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/openapi/orbital-query-api-openapi.yml
+        type: OpenAPI
     description: >-
-      Orbital is a data gateway that connects APIs, databases, event streams and
-      more.Deliver secure, self repairing integrations in minutes. 
+      The Orbital Query API allows developers to submit TaxiQL queries to the
+      Orbital data gateway for integrating, transforming, and discovering data
+      across APIs, databases, event streams, and other data sources. Queries are
+      submitted to the /api/taxiql endpoint and results can be returned as JSON
+      or streamed via Server-Sent Events. The API also provides endpoints for
+      managing schemas, services, connections, types, and caches.
 name: Orbital
 tags:
   - Gateways
@@ -22,7 +31,7 @@ type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2026-01-05'
-modified: '2026-01-04'
+modified: '2026-03-14'
 position: Consuming
 description: >-
   Orbital is a data gateway and integration platform that connects APIs,

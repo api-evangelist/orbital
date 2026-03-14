@@ -1,0 +1,437 @@
+openapi: 3.1.0
+info:
+  title: Orbital Query API
+  description: >-
+    The Orbital Query API allows developers to submit TaxiQL queries to the
+    Orbital data gateway for integrating, transforming, and discovering data
+    across APIs, databases, event streams, and other data sources. Queries are
+    written in TaxiQL, a technology-agnostic query language, and submitted to the
+    /api/taxiql endpoint. Results can be returned as a single JSON batch or
+    streamed via Server-Sent Events. Orbital automatically orchestrates the
+    required data fetching across connected services based on semantic type
+    metadata in your API specs.
+  version: 1.0.0
+  contact:
+    name: Orbital Support
+    url: https://orbitalhq.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://localhost:9022
+    description: Local Orbital Server
+paths:
+  /api/taxiql:
+    post:
+      operationId: submitTaxiQlQuery
+      summary: Submit a TaxiQL query
+      description: >-
+        Submits a TaxiQL query to Orbital for execution. Orbital uses the types
+        referenced in the query to look up connected services that expose those
+        values, then builds an integration plan to load the required data from
+        across multiple sources. Queries start with a verb such as find (for
+        finite result sets) or stream (for infinite streams). The response format
+        depends on the Accept header - use application/json for batch results or
+        text/event-stream for streaming results via Server-Sent Events.
+      parameters:
+        - name: resultMode
+          in: query
+          description: >-
+            Controls how type metadata is included in the response. Set to TYPED
+            to include type metadata with results.
+          required: false
+          schema:
+            type: string
+            enum:
+              - RAW
+              - TYPED
+            default: RAW
+      requestBody:
+        description: A TaxiQL query string to execute against connected data sources.
+        required: true
+        content:
+          application/taxiql:
+            schema:
+              type: string
+            examples:
+              findMovies:
+                summary: Find all movies
+                value: "find { Movie[] }"
+              findWithProjection:
+                summary: Find movies with specific fields
+                value: >-
+                  find { Movie[] } as {
+                    title: MovieTitle
+                    rating: ReviewScore
+                  }[]
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Successful query execution returning results.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueryResultBatch"
+            text/event-stream:
+              schema:
+                type: string
+                description: >-
+                  Server-Sent Events stream of query results. Each event
+                  contains a JSON object representing a single result record.
+        "400":
+          description: Invalid query syntax or unresolvable types.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Internal server error during query execution.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/schemas:
+    get:
+      operationId: listSchemas
+      summary: List schemas
+      description: >-
+        Returns the schemas and type definitions currently registered in the
+        Orbital workspace, including types from connected API specs, database
+        schemas, and Taxi projects.
+      responses:
+        "200":
+          description: A list of schemas registered in the workspace.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SchemaEntry"
+  /api/services:
+    get:
+      operationId: listServices
+      summary: List connected services
+      description: >-
+        Returns the list of services currently connected to Orbital, including
+        REST APIs, databases, message queues, and serverless functions.
+      responses:
+        "200":
+          description: A list of connected services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ServiceEntry"
+  /api/connections:
+    get:
+      operationId: listConnections
+      summary: List data source connections
+      description: >-
+        Returns configured connections to external data sources such as
+        databases, APIs, and message brokers.
+      responses:
+        "200":
+          description: A list of data source connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ConnectionEntry"
+    post:
+      operationId: createConnection
+      summary: Create a data source connection
+      description: >-
+        Creates a new connection to an external data source such as a database,
+        REST API, or message broker.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectionCreateRequest"
+      responses:
+        "201":
+          description: Connection created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectionEntry"
+        "400":
+          description: Invalid connection configuration.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/connections/{connectionId}:
+    get:
+      operationId: getConnection
+      summary: Get a data source connection
+      description: Returns details of a specific data source connection.
+      parameters:
+        - name: connectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Connection details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectionEntry"
+        "404":
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteConnection
+      summary: Delete a data source connection
+      description: Removes a data source connection from Orbital.
+      parameters:
+        - name: connectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Connection deleted successfully.
+        "404":
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/types:
+    get:
+      operationId: listTypes
+      summary: List registered types
+      description: >-
+        Returns all semantic types registered in the Orbital workspace from
+        connected API specs, database schemas, and Taxi projects.
+      responses:
+        "200":
+          description: A list of registered types.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TypeEntry"
+  /api/caches:
+    get:
+      operationId: listCaches
+      summary: List cache configurations
+      description: >-
+        Returns information about configured caches. Orbital can use external
+        caches like Redis or Hazelcast, or its built-in per-query cache.
+      responses:
+        "200":
+          description: A list of cache configurations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CacheEntry"
+components:
+  schemas:
+    QueryResultBatch:
+      type: object
+      description: Batch result of a TaxiQL query execution.
+      properties:
+        results:
+          type: array
+          description: Array of result records matching the query.
+          items:
+            type: object
+            additionalProperties: true
+        queryId:
+          type: string
+          description: Unique identifier for this query execution.
+        duration:
+          type: integer
+          description: Query execution duration in milliseconds.
+    SchemaEntry:
+      type: object
+      description: A schema registered in the Orbital workspace.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the schema.
+        name:
+          type: string
+          description: Human-readable name of the schema.
+        version:
+          type: string
+          description: Version of the schema.
+        source:
+          type: string
+          description: Source of the schema (e.g., OpenAPI, Protobuf, database).
+        types:
+          type: array
+          description: Types defined in this schema.
+          items:
+            type: string
+    ServiceEntry:
+      type: object
+      description: A service connected to Orbital.
+      properties:
+        name:
+          type: string
+          description: Name of the service.
+        url:
+          type: string
+          format: uri
+          description: Base URL of the service.
+        protocol:
+          type: string
+          description: Protocol type of the service.
+          enum:
+            - REST
+            - gRPC
+            - SOAP
+            - Kafka
+            - Database
+        operationCount:
+          type: integer
+          description: Number of operations exposed by this service.
+        status:
+          type: string
+          description: Current connection status of the service.
+          enum:
+            - CONNECTED
+            - DISCONNECTED
+            - ERROR
+    ConnectionEntry:
+      type: object
+      description: A data source connection configuration.
+      properties:
+        connectionId:
+          type: string
+          description: Unique identifier for the connection.
+        name:
+          type: string
+          description: Display name of the connection.
+        connectionType:
+          type: string
+          description: Type of the data source connection.
+          enum:
+            - API
+            - DATABASE
+            - MESSAGE_QUEUE
+            - SERVERLESS_FUNCTION
+        connectionUrl:
+          type: string
+          format: uri
+          description: URL or connection string for the data source.
+        status:
+          type: string
+          description: Current status of the connection.
+          enum:
+            - ACTIVE
+            - INACTIVE
+            - ERROR
+    ConnectionCreateRequest:
+      type: object
+      description: Request body for creating a new data source connection.
+      required:
+        - name
+        - connectionType
+        - connectionUrl
+      properties:
+        name:
+          type: string
+          description: Display name for the connection.
+        connectionType:
+          type: string
+          description: Type of the data source.
+          enum:
+            - API
+            - DATABASE
+            - MESSAGE_QUEUE
+            - SERVERLESS_FUNCTION
+        connectionUrl:
+          type: string
+          format: uri
+          description: URL or connection string for the data source.
+        authentication:
+          $ref: "#/components/schemas/AuthenticationConfig"
+    AuthenticationConfig:
+      type: object
+      description: Authentication configuration for a data source connection.
+      properties:
+        type:
+          type: string
+          description: Authentication method.
+          enum:
+            - NONE
+            - BASIC
+            - BEARER_TOKEN
+            - OAUTH2
+            - API_KEY
+        credentials:
+          type: object
+          description: Authentication credentials (format depends on auth type).
+          additionalProperties: true
+    TypeEntry:
+      type: object
+      description: A semantic type registered in the workspace.
+      properties:
+        qualifiedName:
+          type: string
+          description: Fully qualified name of the type.
+        kind:
+          type: string
+          description: Kind of type definition.
+          enum:
+            - SCALAR
+            - MODEL
+            - ENUM
+            - SERVICE
+        sources:
+          type: array
+          description: Data sources that expose this type.
+          items:
+            type: string
+    CacheEntry:
+      type: object
+      description: A cache configuration entry.
+      properties:
+        name:
+          type: string
+          description: Name of the cache configuration.
+        type:
+          type: string
+          description: Cache implementation type.
+          enum:
+            - IN_MEMORY
+            - REDIS
+            - HAZELCAST
+        status:
+          type: string
+          description: Current status of the cache.
+          enum:
+            - ACTIVE
+            - INACTIVE
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
