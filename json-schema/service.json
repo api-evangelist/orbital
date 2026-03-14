@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/json-schema/service.json",
+  "title": "Orbital Service",
+  "description": "Represents a service connected to Orbital, such as a REST API, gRPC service, database, or message queue.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the service."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Base URL of the service."
+    },
+    "protocol": {
+      "type": "string",
+      "description": "Protocol type of the service.",
+      "enum": ["REST", "gRPC", "SOAP", "Kafka", "Database"]
+    },
+    "operationCount": {
+      "type": "integer",
+      "description": "Number of operations exposed by this service."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current connection status of the service.",
+      "enum": ["CONNECTED", "DISCONNECTED", "ERROR"]
+    },
+    "operations": {
+      "type": "array",
+      "description": "Operations exposed by this service.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Operation name."
+          },
+          "returnType": {
+            "type": "string",
+            "description": "Qualified type name of the return type."
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "types": {
+      "type": "array",
+      "description": "Types exposed by this service.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["name", "protocol"]
+}

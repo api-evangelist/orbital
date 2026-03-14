@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/json-schema/schema.json",
+  "title": "Orbital Schema",
+  "description": "Represents a schema registered in the Orbital workspace, containing type definitions from API specs, database schemas, or Taxi projects.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the schema."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the schema."
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the schema."
+    },
+    "source": {
+      "type": "string",
+      "description": "Source format of the schema.",
+      "enum": ["TAXI", "OPEN_API", "PROTOBUF", "AVRO", "JSON_SCHEMA", "DATABASE"]
+    },
+    "content": {
+      "type": "string",
+      "description": "The raw schema content."
+    },
+    "types": {
+      "type": "array",
+      "description": "Types defined in this schema.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the schema was registered."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the schema was last updated."
+    }
+  },
+  "required": ["name", "source"]
+}

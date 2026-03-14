@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/json-schema/type.json",
+  "title": "Orbital Type",
+  "description": "Represents a semantic type registered in the Orbital workspace, used by TaxiQL to discover and orchestrate data fetching across connected services.",
+  "type": "object",
+  "properties": {
+    "qualifiedName": {
+      "type": "string",
+      "description": "Fully qualified name of the type."
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of type definition.",
+      "enum": ["SCALAR", "MODEL", "ENUM", "SERVICE"]
+    },
+    "fields": {
+      "type": "array",
+      "description": "Fields defined on this type (for MODEL types).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Field name."
+          },
+          "type": {
+            "type": "string",
+            "description": "Qualified type name of the field."
+          },
+          "nullable": {
+            "type": "boolean",
+            "description": "Whether the field is nullable."
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Data sources that expose this type.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "schemaId": {
+      "type": "string",
+      "description": "ID of the schema that defines this type."
+    }
+  },
+  "required": ["qualifiedName", "kind"]
+}

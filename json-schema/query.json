@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/json-schema/query.json",
+  "title": "Orbital Query",
+  "description": "Represents a TaxiQL query submitted to the Orbital data gateway for execution against connected data sources.",
+  "type": "object",
+  "properties": {
+    "queryId": {
+      "type": "string",
+      "description": "Unique identifier for this query execution."
+    },
+    "query": {
+      "type": "string",
+      "description": "The TaxiQL query string to execute."
+    },
+    "resultMode": {
+      "type": "string",
+      "description": "Controls how type metadata is included in the response.",
+      "enum": ["RAW", "TYPED"],
+      "default": "RAW"
+    },
+    "results": {
+      "type": "array",
+      "description": "Array of result records matching the query.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Query execution duration in milliseconds."
+    }
+  },
+  "required": ["query"]
+}

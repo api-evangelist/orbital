@@ -1,0 +1,466 @@
+openapi: 3.1.0
+info:
+  title: Orbital Schema Management API
+  description: >-
+    The Orbital Schema Management API provides endpoints for managing schemas,
+    types, and data source definitions within an Orbital workspace. It allows
+    developers to register, update, and remove Taxi schemas and type definitions
+    that Orbital uses to understand the semantic relationships between data
+    across connected services. Schemas can originate from OpenAPI specs, Protobuf
+    definitions, database schemas, or Taxi projects, and are used by the TaxiQL
+    query engine to automatically discover and orchestrate data fetching across
+    multiple sources.
+  version: 1.0.0
+  contact:
+    name: Orbital Support
+    url: https://orbitalhq.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://localhost:9022
+    description: Local Orbital Server
+paths:
+  /api/schemas:
+    get:
+      operationId: listSchemas
+      summary: List schemas
+      description: >-
+        Returns the schemas and type definitions currently registered in the
+        Orbital workspace, including types from connected API specs, database
+        schemas, and Taxi projects.
+      responses:
+        "200":
+          description: A list of schemas registered in the workspace.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SchemaEntry"
+    post:
+      operationId: createSchema
+      summary: Register a new schema
+      description: >-
+        Registers a new schema in the Orbital workspace. The schema can be
+        provided as a Taxi source file, OpenAPI specification, Protobuf
+        definition, or other supported schema format. Orbital parses the schema,
+        extracts type definitions and semantic metadata, and makes the types
+        available for TaxiQL queries.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SchemaCreateRequest"
+      responses:
+        "201":
+          description: Schema registered successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SchemaEntry"
+        "400":
+          description: Invalid schema definition.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/schemas/{schemaId}:
+    get:
+      operationId: getSchema
+      summary: Get a schema by ID
+      description: Returns the details of a specific schema registered in the workspace.
+      parameters:
+        - name: schemaId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Schema details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SchemaEntry"
+        "404":
+          description: Schema not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    put:
+      operationId: updateSchema
+      summary: Update a schema
+      description: >-
+        Updates an existing schema in the workspace. Orbital re-parses the
+        schema, updates type definitions, and refreshes the query engine's
+        understanding of available data sources.
+      parameters:
+        - name: schemaId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SchemaCreateRequest"
+      responses:
+        "200":
+          description: Schema updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SchemaEntry"
+        "400":
+          description: Invalid schema definition.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Schema not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteSchema
+      summary: Delete a schema
+      description: >-
+        Removes a schema and its associated type definitions from the workspace.
+        Types that are only defined in this schema will no longer be available
+        for TaxiQL queries.
+      parameters:
+        - name: schemaId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Schema deleted successfully.
+        "404":
+          description: Schema not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/types:
+    get:
+      operationId: listTypes
+      summary: List registered types
+      description: >-
+        Returns all semantic types registered in the Orbital workspace from
+        connected API specs, database schemas, and Taxi projects.
+      responses:
+        "200":
+          description: A list of registered types.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TypeEntry"
+  /api/types/{qualifiedName}:
+    get:
+      operationId: getType
+      summary: Get type details
+      description: >-
+        Returns detailed information about a specific semantic type, including
+        its definition, the sources that expose it, and the fields it contains.
+      parameters:
+        - name: qualifiedName
+          in: path
+          required: true
+          description: Fully qualified name of the type.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Type details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TypeDetail"
+        "404":
+          description: Type not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/services:
+    get:
+      operationId: listServices
+      summary: List connected services
+      description: >-
+        Returns the list of services currently connected to Orbital, including
+        REST APIs, databases, message queues, and serverless functions.
+      responses:
+        "200":
+          description: A list of connected services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ServiceEntry"
+  /api/services/{serviceName}:
+    get:
+      operationId: getService
+      summary: Get service details
+      description: >-
+        Returns detailed information about a specific connected service,
+        including its operations, types, and connection status.
+      parameters:
+        - name: serviceName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Service details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceDetail"
+        "404":
+          description: Service not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    SchemaEntry:
+      type: object
+      description: A schema registered in the Orbital workspace.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the schema.
+        name:
+          type: string
+          description: Human-readable name of the schema.
+        version:
+          type: string
+          description: Version of the schema.
+        source:
+          type: string
+          description: Source format of the schema.
+          enum:
+            - TAXI
+            - OPEN_API
+            - PROTOBUF
+            - AVRO
+            - JSON_SCHEMA
+            - DATABASE
+        content:
+          type: string
+          description: The raw schema content.
+        types:
+          type: array
+          description: Types defined in this schema.
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the schema was registered.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the schema was last updated.
+    SchemaCreateRequest:
+      type: object
+      description: Request body for registering or updating a schema.
+      required:
+        - name
+        - source
+        - content
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the schema.
+        source:
+          type: string
+          description: Format of the schema being registered.
+          enum:
+            - TAXI
+            - OPEN_API
+            - PROTOBUF
+            - AVRO
+            - JSON_SCHEMA
+            - DATABASE
+        content:
+          type: string
+          description: >-
+            The raw schema content. For OpenAPI, provide the YAML or JSON spec.
+            For Taxi, provide the .taxi source. For Protobuf, provide the .proto
+            definition.
+        url:
+          type: string
+          format: uri
+          description: >-
+            Optional URL to load the schema from instead of providing content
+            inline.
+    TypeEntry:
+      type: object
+      description: A semantic type registered in the workspace.
+      properties:
+        qualifiedName:
+          type: string
+          description: Fully qualified name of the type.
+        kind:
+          type: string
+          description: Kind of type definition.
+          enum:
+            - SCALAR
+            - MODEL
+            - ENUM
+            - SERVICE
+        sources:
+          type: array
+          description: Data sources that expose this type.
+          items:
+            type: string
+    TypeDetail:
+      type: object
+      description: Detailed information about a semantic type.
+      properties:
+        qualifiedName:
+          type: string
+          description: Fully qualified name of the type.
+        kind:
+          type: string
+          description: Kind of type definition.
+          enum:
+            - SCALAR
+            - MODEL
+            - ENUM
+            - SERVICE
+        fields:
+          type: array
+          description: Fields defined on this type (for MODEL types).
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Field name.
+              type:
+                type: string
+                description: Qualified type name of the field.
+              nullable:
+                type: boolean
+                description: Whether the field is nullable.
+        sources:
+          type: array
+          description: Data sources that expose this type.
+          items:
+            type: string
+        schemaId:
+          type: string
+          description: ID of the schema that defines this type.
+    ServiceEntry:
+      type: object
+      description: A service connected to Orbital.
+      properties:
+        name:
+          type: string
+          description: Name of the service.
+        url:
+          type: string
+          format: uri
+          description: Base URL of the service.
+        protocol:
+          type: string
+          description: Protocol type of the service.
+          enum:
+            - REST
+            - gRPC
+            - SOAP
+            - Kafka
+            - Database
+        operationCount:
+          type: integer
+          description: Number of operations exposed by this service.
+        status:
+          type: string
+          description: Current connection status of the service.
+          enum:
+            - CONNECTED
+            - DISCONNECTED
+            - ERROR
+    ServiceDetail:
+      type: object
+      description: Detailed information about a connected service.
+      properties:
+        name:
+          type: string
+          description: Name of the service.
+        url:
+          type: string
+          format: uri
+          description: Base URL of the service.
+        protocol:
+          type: string
+          description: Protocol type of the service.
+          enum:
+            - REST
+            - gRPC
+            - SOAP
+            - Kafka
+            - Database
+        status:
+          type: string
+          description: Current connection status.
+          enum:
+            - CONNECTED
+            - DISCONNECTED
+            - ERROR
+        operations:
+          type: array
+          description: Operations exposed by this service.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Operation name.
+              returnType:
+                type: string
+                description: Qualified type name of the return type.
+              parameters:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+        types:
+          type: array
+          description: Types exposed by this service.
+          items:
+            type: string
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true

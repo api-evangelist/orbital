@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/json-schema/cache.json",
+  "title": "Orbital Cache",
+  "description": "Represents a cache configuration in Orbital, used for caching query results to improve performance. Orbital supports in-memory, Redis, and Hazelcast cache implementations.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the cache configuration."
+    },
+    "type": {
+      "type": "string",
+      "description": "Cache implementation type.",
+      "enum": ["IN_MEMORY", "REDIS", "HAZELCAST"]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the cache.",
+      "enum": ["ACTIVE", "INACTIVE"]
+    }
+  },
+  "required": ["name", "type"]
+}

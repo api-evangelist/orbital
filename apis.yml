@@ -13,16 +13,51 @@ apis:
     properties:
       - url: https://orbitalhq.com/docs/querying/writing-queries
         type: Documentation
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/openapi/orbital-query-api-openapi.yml
+      - url: openapi/orbital-query-api-openapi.yml
         type: OpenAPI
+      - url: json-schema/query.json
+        type: JSONSchema
+      - url: json-schema/connection.json
+        type: JSONSchema
+      - url: json-schema/cache.json
+        type: JSONSchema
+      - url: json-ld/orbital-context.jsonld
+        type: JSONLD
     description: >-
       The Orbital Query API allows developers to submit TaxiQL queries to the
       Orbital data gateway for integrating, transforming, and discovering data
       across APIs, databases, event streams, and other data sources. Queries are
       submitted to the /api/taxiql endpoint and results can be returned as JSON
       or streamed via Server-Sent Events. The API also provides endpoints for
-      managing schemas, services, connections, types, and caches.
+      managing connections and caches.
+  - aid: orbital:schema-management-api
+    name: Orbital Schema Management API
+    tags:
+      - Gateways
+      - Data
+      - Schemas
+      - Types
+    humanURL: https://orbitalhq.com/docs/describing-data-sources/open-api
+    properties:
+      - url: https://orbitalhq.com/docs/describing-data-sources/open-api
+        type: Documentation
+      - url: openapi/orbital-schema-management-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/schema.json
+        type: JSONSchema
+      - url: json-schema/service.json
+        type: JSONSchema
+      - url: json-schema/type.json
+        type: JSONSchema
+      - url: json-ld/orbital-context.jsonld
+        type: JSONLD
+    description: >-
+      The Orbital Schema Management API provides endpoints for managing schemas,
+      types, and data source definitions within an Orbital workspace. It allows
+      developers to register, update, and remove Taxi schemas and type
+      definitions that Orbital uses to understand the semantic relationships
+      between data across connected services. Schemas can originate from OpenAPI
+      specs, Protobuf definitions, database schemas, or Taxi projects.
 name: Orbital
 tags:
   - Gateways
