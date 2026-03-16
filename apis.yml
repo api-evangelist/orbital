@@ -91,7 +91,7 @@ description: >-
   write extensive integration code.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
   - name: Orbital - Automated integration for modern dev teams.
