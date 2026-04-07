@@ -24,7 +24,7 @@ paths:
   /api/schemas:
     get:
       operationId: listSchemas
-      summary: List schemas
+      summary: Orbital List schemas
       description: >-
         Returns the schemas and type definitions currently registered in the
         Orbital workspace, including types from connected API specs, database
@@ -40,7 +40,7 @@ paths:
                   $ref: "#/components/schemas/SchemaEntry"
     post:
       operationId: createSchema
-      summary: Register a new schema
+      summary: Orbital Register a new schema
       description: >-
         Registers a new schema in the Orbital workspace. The schema can be
         provided as a Taxi source file, OpenAPI specification, Protobuf
@@ -69,7 +69,7 @@ paths:
   /api/schemas/{schemaId}:
     get:
       operationId: getSchema
-      summary: Get a schema by ID
+      summary: Orbital Get a schema by ID
       description: Returns the details of a specific schema registered in the workspace.
       parameters:
         - name: schemaId
@@ -92,7 +92,7 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
     put:
       operationId: updateSchema
-      summary: Update a schema
+      summary: Orbital Update a schema
       description: >-
         Updates an existing schema in the workspace. Orbital re-parses the
         schema, updates type definitions, and refreshes the query engine's
@@ -130,7 +130,7 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
     delete:
       operationId: deleteSchema
-      summary: Delete a schema
+      summary: Orbital Delete a schema
       description: >-
         Removes a schema and its associated type definitions from the workspace.
         Types that are only defined in this schema will no longer be available
@@ -153,7 +153,7 @@ paths:
   /api/types:
     get:
       operationId: listTypes
-      summary: List registered types
+      summary: Orbital List registered types
       description: >-
         Returns all semantic types registered in the Orbital workspace from
         connected API specs, database schemas, and Taxi projects.
@@ -169,7 +169,7 @@ paths:
   /api/types/{qualifiedName}:
     get:
       operationId: getType
-      summary: Get type details
+      summary: Orbital Get type details
       description: >-
         Returns detailed information about a specific semantic type, including
         its definition, the sources that expose it, and the fields it contains.
@@ -196,7 +196,7 @@ paths:
   /api/services:
     get:
       operationId: listServices
-      summary: List connected services
+      summary: Orbital List connected services
       description: >-
         Returns the list of services currently connected to Orbital, including
         REST APIs, databases, message queues, and serverless functions.
@@ -212,7 +212,7 @@ paths:
   /api/services/{serviceName}:
     get:
       operationId: getService
-      summary: Get service details
+      summary: Orbital Get service details
       description: >-
         Returns detailed information about a specific connected service,
         including its operations, types, and connection status.

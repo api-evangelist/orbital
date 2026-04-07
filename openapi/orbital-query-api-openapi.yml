@@ -24,7 +24,7 @@ paths:
   /api/taxiql:
     post:
       operationId: submitTaxiQlQuery
-      summary: Submit a TaxiQL query
+      summary: Orbital Submit a TaxiQL query
       description: >-
         Submits a TaxiQL query to Orbital for execution. Orbital uses the types
         referenced in the query to look up connected services that expose those
@@ -95,7 +95,7 @@ paths:
   /api/schemas:
     get:
       operationId: listSchemas
-      summary: List schemas
+      summary: Orbital List schemas
       description: >-
         Returns the schemas and type definitions currently registered in the
         Orbital workspace, including types from connected API specs, database
@@ -112,7 +112,7 @@ paths:
   /api/services:
     get:
       operationId: listServices
-      summary: List connected services
+      summary: Orbital List connected services
       description: >-
         Returns the list of services currently connected to Orbital, including
         REST APIs, databases, message queues, and serverless functions.
@@ -128,7 +128,7 @@ paths:
   /api/connections:
     get:
       operationId: listConnections
-      summary: List data source connections
+      summary: Orbital List data source connections
       description: >-
         Returns configured connections to external data sources such as
         databases, APIs, and message brokers.
@@ -143,7 +143,7 @@ paths:
                   $ref: "#/components/schemas/ConnectionEntry"
     post:
       operationId: createConnection
-      summary: Create a data source connection
+      summary: Orbital Create a data source connection
       description: >-
         Creates a new connection to an external data source such as a database,
         REST API, or message broker.
@@ -169,7 +169,7 @@ paths:
   /api/connections/{connectionId}:
     get:
       operationId: getConnection
-      summary: Get a data source connection
+      summary: Orbital Get a data source connection
       description: Returns details of a specific data source connection.
       parameters:
         - name: connectionId
@@ -192,7 +192,7 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
     delete:
       operationId: deleteConnection
-      summary: Delete a data source connection
+      summary: Orbital Delete a data source connection
       description: Removes a data source connection from Orbital.
       parameters:
         - name: connectionId
@@ -212,7 +212,7 @@ paths:
   /api/types:
     get:
       operationId: listTypes
-      summary: List registered types
+      summary: Orbital List registered types
       description: >-
         Returns all semantic types registered in the Orbital workspace from
         connected API specs, database schemas, and Taxi projects.
@@ -228,7 +228,7 @@ paths:
   /api/caches:
     get:
       operationId: listCaches
-      summary: List cache configurations
+      summary: Orbital List cache configurations
       description: >-
         Returns information about configured caches. Orbital can use external
         caches like Redis or Hazelcast, or its built-in per-query cache.
