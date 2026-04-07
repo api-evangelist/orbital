@@ -5,8 +5,8 @@ apis:
   - aid: orbital:query-api
     name: Orbital Query API
     tags:
-      - Gateways
       - Data
+      - Gateways
       - Integration
       - Queries
     humanURL: https://orbitalhq.com/docs/querying/writing-queries
@@ -33,8 +33,8 @@ apis:
   - aid: orbital:schema-management-api
     name: Orbital Schema Management API
     tags:
-      - Gateways
       - Data
+      - Gateways
       - Schemas
       - Types
     humanURL: https://orbitalhq.com/docs/describing-data-sources/open-api
@@ -60,8 +60,8 @@ apis:
       specs, Protobuf definitions, database schemas, or Taxi projects.
 name: Orbital
 tags:
-  - Gateways
   - Data
+  - Gateways
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party

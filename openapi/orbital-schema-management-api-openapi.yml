@@ -38,6 +38,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SchemaEntry"
+      tags:
+        - Schemas
     post:
       operationId: createSchema
       summary: Orbital Register a new schema
@@ -66,6 +68,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+      tags:
+        - Schemas
   /api/schemas/{schemaId}:
     get:
       operationId: getSchema
@@ -90,6 +94,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+      tags:
+        - Schemas
     put:
       operationId: updateSchema
       summary: Orbital Update a schema
@@ -128,6 +134,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+      tags:
+        - Schemas
     delete:
       operationId: deleteSchema
       summary: Orbital Delete a schema
@@ -150,6 +158,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+      tags:
+        - Schemas
   /api/types:
     get:
       operationId: listTypes
@@ -166,6 +176,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TypeEntry"
+      tags:
+        - Types
   /api/types/{qualifiedName}:
     get:
       operationId: getType
@@ -193,6 +205,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+      tags:
+        - Types
   /api/services:
     get:
       operationId: listServices
@@ -209,6 +223,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ServiceEntry"
+      tags:
+        - Services
   /api/services/{serviceName}:
     get:
       operationId: getService
@@ -235,6 +251,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+      tags:
+        - Services
 components:
   schemas:
     SchemaEntry:
@@ -464,3 +482,7 @@ components:
           type: object
           description: Additional error details.
           additionalProperties: true
+tags:
+  - name: Schemas
+  - name: Services
+  - name: Types
