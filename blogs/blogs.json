@@ -1,0 +1,13 @@
+{
+  "repo": "orbital",
+  "feeds": [
+    {
+      "source": "https://orbitalhq.com/blog",
+      "feed_url": "https://orbitalhq.com/feeds/feed.xml",
+      "saved": 10,
+      "title": "Orbital Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:33:28Z"
+}
