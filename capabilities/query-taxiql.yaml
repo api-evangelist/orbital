@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Orbital Query API — Taxiql
+  description: 'Orbital Query API — Taxiql. 1 operations. Lead operation: Orbital Submit a TaxiQL query. Self-contained Naftiko
+    capability covering one Orbital business surface.'
+  tags:
+  - Orbital
+  - Taxiql
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORBITAL_API_KEY: ORBITAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: query-taxiql
+    baseUri: https://localhost:9022
+    description: Orbital Query API — Taxiql business capability. Self-contained, no shared references.
+    resources:
+    - name: api-taxiql
+      path: /api/taxiql
+      operations:
+      - name: submittaxiqlquery
+        method: POST
+        description: Orbital Submit a TaxiQL query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resultMode
+          in: query
+          type: string
+          description: Controls how type metadata is included in the response. Set to TYPED to include type metadata with
+            results.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: query-taxiql-rest
+    port: 8080
+    description: REST adapter for Orbital Query API — Taxiql. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/taxiql
+      name: api-taxiql
+      description: REST surface for api-taxiql.
+      operations:
+      - method: POST
+        name: submittaxiqlquery
+        description: Orbital Submit a TaxiQL query
+        call: query-taxiql.submittaxiqlquery
+        with:
+          resultMode: rest.resultMode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: query-taxiql-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Orbital Query API — Taxiql. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: orbital-submit-taxiql-query
+      description: Orbital Submit a TaxiQL query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: query-taxiql.submittaxiqlquery
+      with:
+        resultMode: tools.resultMode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
