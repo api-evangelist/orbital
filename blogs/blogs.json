@@ -3,12 +3,11 @@
   "feeds": [
     {
       "source": "https://orbitalhq.com/blog",
-      "feed_url": "",
-      "title": "",
-      "saved": 0,
-      "error": "no_feed"
+      "feed_url": "https://orbitalhq.com/feeds/feed.xml",
+      "title": "Orbital Blog",
+      "saved": 3
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-09T20:17:51Z"
+  "post_count": 13,
+  "fetched": "2026-05-17T20:48:52Z"
 }
