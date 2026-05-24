@@ -110,3 +110,5 @@ common:
   description: 'null'
   url: https://orbitalhq.com/blog
   type: Blog
+- type: LLMsTxt
+  url: https://orbitalhq.com/llms.txt
