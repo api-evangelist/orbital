@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orbital Schema Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/schemas"
+          },
+          "docs": "Returns the schemas and type definitions currently registered in the Orbital workspace, including types from connected API specs, database schemas, and Taxi projects."
+        },
+        {
+          "info": {
+            "name": "Orbital Register a new schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:9022/api/schemas",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new schema in the Orbital workspace. The schema can be provided as a Taxi source file, OpenAPI specification, Protobuf definition, or other supported schema format. Orbital parses the schema, extracts type definitions and semantic metadata, and makes the types available for TaxiQL queries."
+        },
+        {
+          "info": {
+            "name": "Orbital Get a schema by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/schemas/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific schema registered in the workspace."
+        },
+        {
+          "info": {
+            "name": "Orbital Update a schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://localhost:9022/api/schemas/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing schema in the workspace. Orbital re-parses the schema, updates type definitions, and refreshes the query engine's understanding of available data sources."
+        },
+        {
+          "info": {
+            "name": "Orbital Delete a schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:9022/api/schemas/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a schema and its associated type definitions from the workspace. Types that are only defined in this schema will no longer be available for TaxiQL queries."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List registered types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/types"
+          },
+          "docs": "Returns all semantic types registered in the Orbital workspace from connected API specs, database schemas, and Taxi projects."
+        },
+        {
+          "info": {
+            "name": "Orbital Get type details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/types/:qualifiedName",
+            "params": [
+              {
+                "name": "qualifiedName",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified name of the type."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific semantic type, including its definition, the sources that expose it, and the fields it contains."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List connected services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/services"
+          },
+          "docs": "Returns the list of services currently connected to Orbital, including REST APIs, databases, message queues, and serverless functions."
+        },
+        {
+          "info": {
+            "name": "Orbital Get service details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/services/:serviceName",
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific connected service, including its operations, types, and connection status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1158 @@
+{
+  "item": [
+    {
+      "id": "82f8d58c-6c4f-487d-ac19-207acef179f8",
+      "name": "Schemas",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a7470a31-1011-4bc0-8547-9672f3187680",
+          "name": "Orbital List schemas",
+          "request": {
+            "name": "Orbital List schemas",
+            "description": {
+              "content": "Returns the schemas and type definitions currently registered in the Orbital workspace, including types from connected API specs, database schemas, and Taxi projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ba198d5-a6a4-4898-9e0a-48ba1a99d15c",
+              "name": "A list of schemas registered in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"source\": \"TAXI\",\n    \"content\": \"string\",\n    \"types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createdAt\": \"1952-10-05T11:33:48.162Z\",\n    \"updatedAt\": \"2002-09-11T03:50:09.943Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"source\": \"JSON_SCHEMA\",\n    \"content\": \"string\",\n    \"types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createdAt\": \"2025-08-28T11:52:06.484Z\",\n    \"updatedAt\": \"2013-04-26T08:58:18.492Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c428dcc-0165-4b29-a972-981e68e88ed7",
+          "name": "Orbital Register a new schema",
+          "request": {
+            "name": "Orbital Register a new schema",
+            "description": {
+              "content": "Registers a new schema in the Orbital workspace. The schema can be provided as a Taxi source file, OpenAPI specification, Protobuf definition, or other supported schema format. Orbital parses the schema, extracts type definitions and semantic metadata, and makes the types available for TaxiQL queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6493dcd-1adf-4b26-b264-149385d44d15",
+              "name": "Schema registered successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"source\": \"AVRO\",\n  \"content\": \"string\",\n  \"types\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1983-08-09T14:45:04.576Z\",\n  \"updatedAt\": \"1965-10-27T21:47:21.640Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f105ead-0297-484a-a2ed-11ab34ee47a5",
+              "name": "Invalid schema definition.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f19b6c7c-2025-46ee-bd1d-205866d5c78c",
+          "name": "Orbital Get a schema by ID",
+          "request": {
+            "name": "Orbital Get a schema by ID",
+            "description": {
+              "content": "Returns the details of a specific schema registered in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "schemas",
+                ":schemaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2fcc039-a4c3-4a3a-8f3f-5065e1f49be8",
+              "name": "Schema details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"source\": \"AVRO\",\n  \"content\": \"string\",\n  \"types\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1983-08-09T14:45:04.576Z\",\n  \"updatedAt\": \"1965-10-27T21:47:21.640Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b87e5811-2e60-4714-b1ef-619e7e955a96",
+              "name": "Schema not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d3eb2c9-bb84-4835-a20e-96152ad498d7",
+          "name": "Orbital Update a schema",
+          "request": {
+            "name": "Orbital Update a schema",
+            "description": {
+              "content": "Updates an existing schema in the workspace. Orbital re-parses the schema, updates type definitions, and refreshes the query engine's understanding of available data sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "schemas",
+                ":schemaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4bb8bd8a-7a58-4e49-a765-31f1352ce7de",
+              "name": "Schema updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"source\": \"AVRO\",\n  \"content\": \"string\",\n  \"types\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1983-08-09T14:45:04.576Z\",\n  \"updatedAt\": \"1965-10-27T21:47:21.640Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db882aa5-1fc2-4412-945d-b40e7abe0f6c",
+              "name": "Invalid schema definition.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "513b20d2-258a-4254-8108-9e215ffa18ee",
+              "name": "Schema not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"content\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e919a52a-b790-458d-8371-209daf504cd8",
+          "name": "Orbital Delete a schema",
+          "request": {
+            "name": "Orbital Delete a schema",
+            "description": {
+              "content": "Removes a schema and its associated type definitions from the workspace. Types that are only defined in this schema will no longer be available for TaxiQL queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "schemas",
+                ":schemaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schemaId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af7bb306-2420-4e04-9b33-9c7e297b230a",
+              "name": "Schema deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19992a6a-4672-42aa-ac66-d0a63b8f0c4d",
+              "name": "Schema not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas",
+                    ":schemaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schemaId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "68a891f1-aafa-4e46-a5e0-80b56def097a",
+      "name": "Services",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a407e0fe-84a1-4a2c-951f-c48236079a2a",
+          "name": "Orbital List connected services",
+          "request": {
+            "name": "Orbital List connected services",
+            "description": {
+              "content": "Returns the list of services currently connected to Orbital, including REST APIs, databases, message queues, and serverless functions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b99d1183-d722-4ee9-8a06-1b19206cab1d",
+              "name": "A list of connected services.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"url\": \"https://CPewVmfpH.xlyFzYcqyE+LoXMY0-fnW22zW3Z1kLg5nlKqW6IyvflIGSF6UTRykbj\",\n    \"protocol\": \"Kafka\",\n    \"operationCount\": 8248,\n    \"status\": \"CONNECTED\"\n  },\n  {\n    \"name\": \"string\",\n    \"url\": \"http://wVDTpJwatzWPMKdQqwZCIHdWWtOmk.tfluE2IoPgN.vwOOhZRRM4D5vlZd,seE6KffUNoMqBqH4+TyXxHSRdRs7BBzbCmwv9.ZlnATTDHv\",\n    \"protocol\": \"SOAP\",\n    \"operationCount\": 3224,\n    \"status\": \"DISCONNECTED\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cde05a9e-3687-4399-a3c5-33d3dbddcff1",
+          "name": "Orbital Get service details",
+          "request": {
+            "name": "Orbital Get service details",
+            "description": {
+              "content": "Returns detailed information about a specific connected service, including its operations, types, and connection status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "services",
+                ":serviceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b4cb76c-2a2c-40fa-b4f6-aeed0c8d6475",
+              "name": "Service details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "services",
+                    ":serviceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"url\": \"http://kFpZWypMMgatTUcxfKdHoAPe.bvcgQyd8FktHw1q0aO00fodY,oNsS1bcNmuOSz88h8\",\n  \"protocol\": \"REST\",\n  \"status\": \"DISCONNECTED\",\n  \"operations\": [\n    {\n      \"name\": \"string\",\n      \"returnType\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"returnType\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"types\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e703a34b-b0cd-4eb7-b71b-613b3ee27d97",
+              "name": "Service not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "services",
+                    ":serviceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "80b66663-706d-48fe-a650-3f803e459745",
+      "name": "Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34a1412b-155e-4586-a286-26826ad06bec",
+          "name": "Orbital List registered types",
+          "request": {
+            "name": "Orbital List registered types",
+            "description": {
+              "content": "Returns all semantic types registered in the Orbital workspace from connected API specs, database schemas, and Taxi projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "565e29b1-be85-4c43-b393-369a7d3afdaf",
+              "name": "A list of registered types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"qualifiedName\": \"string\",\n    \"kind\": \"ENUM\",\n    \"sources\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"qualifiedName\": \"string\",\n    \"kind\": \"MODEL\",\n    \"sources\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3a5089e-c965-4655-8d18-ccf26b9d35bc",
+          "name": "Orbital Get type details",
+          "request": {
+            "name": "Orbital Get type details",
+            "description": {
+              "content": "Returns detailed information about a specific semantic type, including its definition, the sources that expose it, and the fields it contains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "types",
+                ":qualifiedName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "qualifiedName",
+                  "description": "(Required) Fully qualified name of the type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ab197a7-55c2-4f20-b3cf-e4333a3b2de3",
+              "name": "Type details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "types",
+                    ":qualifiedName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "qualifiedName",
+                      "description": "(Required) Fully qualified name of the type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"qualifiedName\": \"string\",\n  \"kind\": \"SCALAR\",\n  \"fields\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"nullable\": false\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"nullable\": false\n    }\n  ],\n  \"sources\": [\n    \"string\",\n    \"string\"\n  ],\n  \"schemaId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56f21db8-728f-4dc8-9690-b5a26ed91ba1",
+              "name": "Type not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "types",
+                    ":qualifiedName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "qualifiedName",
+                      "description": "(Required) Fully qualified name of the type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:9022",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "12e950ec-aa1f-423d-9410-42c186e1752d",
+    "name": "Orbital Schema Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orbital Schema Management API provides endpoints for managing schemas, types, and data source definitions within an Orbital workspace. It allows developers to register, update, and remove Taxi schemas and type definitions that Orbital uses to understand the semantic relationships between data across connected services. Schemas can originate from OpenAPI specs, Protobuf definitions, database schemas, or Taxi projects, and are used by the TaxiQL query engine to automatically discover and orchestrate data fetching across multiple sources.\n\nContact Support:\n Name: Orbital Support",
+      "type": "text/plain"
+    }
+  }
+}

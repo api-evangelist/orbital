@@ -1,0 +1,1051 @@
+{
+  "item": [
+    {
+      "id": "42c8d429-5ff1-46b3-9bfc-1ccb0be1c1ff",
+      "name": "Caches",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77a4a62d-1549-478d-b5b3-88e749a56a6a",
+          "name": "Orbital List cache configurations",
+          "request": {
+            "name": "Orbital List cache configurations",
+            "description": {
+              "content": "Returns information about configured caches. Orbital can use external caches like Redis or Hazelcast, or its built-in per-query cache.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "caches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fe3939f-0542-4f99-878d-b3efbb0f514a",
+              "name": "A list of cache configurations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "caches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"type\": \"IN_MEMORY\",\n    \"status\": \"ACTIVE\"\n  },\n  {\n    \"name\": \"string\",\n    \"type\": \"IN_MEMORY\",\n    \"status\": \"ACTIVE\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "461d8716-448e-4031-8e1b-235fa8702dd3",
+      "name": "Connections",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99859384-2f96-42ab-84d5-2447316c35ef",
+          "name": "Orbital List data source connections",
+          "request": {
+            "name": "Orbital List data source connections",
+            "description": {
+              "content": "Returns configured connections to external data sources such as databases, APIs, and message brokers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0daba27-77e9-4309-9d40-dba987208221",
+              "name": "A list of data source connections.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"connectionId\": \"string\",\n    \"name\": \"string\",\n    \"connectionType\": \"SERVERLESS_FUNCTION\",\n    \"connectionUrl\": \"http://srCbdSVggLniFHgIOtzzHNIOVolUaDm.hhpuRlh9hh6\",\n    \"status\": \"ERROR\"\n  },\n  {\n    \"connectionId\": \"string\",\n    \"name\": \"string\",\n    \"connectionType\": \"API\",\n    \"connectionUrl\": \"http://IPBaheeDm.dlfdx\",\n    \"status\": \"INACTIVE\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a04937a2-4f77-43d2-a7ef-38975ed2c497",
+          "name": "Orbital Create a data source connection",
+          "request": {
+            "name": "Orbital Create a data source connection",
+            "description": {
+              "content": "Creates a new connection to an external data source such as a database, REST API, or message broker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"connectionType\": \"<string>\",\n  \"connectionUrl\": \"<uri>\",\n  \"authentication\": {\n    \"type\": \"<string>\",\n    \"credentials\": {\n      \"key_0\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "adfae5d1-4bbf-4e73-b619-ca62ef5a0f48",
+              "name": "Connection created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"connectionType\": \"<string>\",\n  \"connectionUrl\": \"<uri>\",\n  \"authentication\": {\n    \"type\": \"NONE\",\n    \"credentials\": {\n      \"key_0\": 3004\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectionId\": \"string\",\n  \"name\": \"string\",\n  \"connectionType\": \"MESSAGE_QUEUE\",\n  \"connectionUrl\": \"https://yGEqUGaqrEFpcyUfPuSTCVCWeuZsAaIE.dxyAq7tNFzs09kjBdFJC91k5AjGh2e7I1,bHIz\",\n  \"status\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a946d0d5-54ff-4f10-985e-029a3e9070fd",
+              "name": "Invalid connection configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"connectionType\": \"<string>\",\n  \"connectionUrl\": \"<uri>\",\n  \"authentication\": {\n    \"type\": \"NONE\",\n    \"credentials\": {\n      \"key_0\": 3004\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": 7411\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "063f533b-1773-4a59-9ae5-3d480d09ffaa",
+          "name": "Orbital Get a data source connection",
+          "request": {
+            "name": "Orbital Get a data source connection",
+            "description": {
+              "content": "Returns details of a specific data source connection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "connections",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ac6f04d-447a-417d-ae6a-5c0f1a5019cf",
+              "name": "Connection details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectionId\": \"string\",\n  \"name\": \"string\",\n  \"connectionType\": \"MESSAGE_QUEUE\",\n  \"connectionUrl\": \"https://yGEqUGaqrEFpcyUfPuSTCVCWeuZsAaIE.dxyAq7tNFzs09kjBdFJC91k5AjGh2e7I1,bHIz\",\n  \"status\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1947cf43-70c4-42c9-9885-2347d88d80e0",
+              "name": "Connection not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": 7411\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f68caa2-d8c8-4b8d-b914-0ad44bf5da55",
+          "name": "Orbital Delete a data source connection",
+          "request": {
+            "name": "Orbital Delete a data source connection",
+            "description": {
+              "content": "Removes a data source connection from Orbital.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "connections",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97693780-05b1-4ef7-a49e-45d1a62ed7a4",
+              "name": "Connection deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf9159f1-f5c9-49a1-bbf4-132e0f3836c1",
+              "name": "Connection not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": 7411\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9a893250-1c50-4f17-a625-5a8e590a7a8c",
+      "name": "Schemas",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "222e836c-ef28-48ba-86a8-6ba19c61bf37",
+          "name": "Orbital List schemas",
+          "request": {
+            "name": "Orbital List schemas",
+            "description": {
+              "content": "Returns the schemas and type definitions currently registered in the Orbital workspace, including types from connected API specs, database schemas, and Taxi projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a6e5e29-6f4e-4f67-83a4-8e9195462e31",
+              "name": "A list of schemas registered in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"source\": \"string\",\n    \"types\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"source\": \"string\",\n    \"types\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3c02d318-fa7e-43b5-9802-3adf10ee6f9f",
+      "name": "Services",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83503aa8-8c9b-4fe9-b2f6-21ef83dc12fb",
+          "name": "Orbital List connected services",
+          "request": {
+            "name": "Orbital List connected services",
+            "description": {
+              "content": "Returns the list of services currently connected to Orbital, including REST APIs, databases, message queues, and serverless functions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fa78929-b3b0-425c-acdc-a2564188fb8c",
+              "name": "A list of connected services.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"url\": \"http://GdXFUAHGtKFuPRMWcAxGFjO.jgsanJUz2ipGvGiOBexJoiCmqN5KVL,1VCA+Gf8y+oel-pyh\",\n    \"protocol\": \"SOAP\",\n    \"operationCount\": 2533,\n    \"status\": \"DISCONNECTED\"\n  },\n  {\n    \"name\": \"string\",\n    \"url\": \"https://gSMeKDMhdJiRJvVNvBhYMQ.gtY4JcSNnUjZ9pLuprm\",\n    \"protocol\": \"Database\",\n    \"operationCount\": 7427,\n    \"status\": \"ERROR\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "99363ff0-44f3-4880-bf08-9c443055cc3f",
+      "name": "Taxiql",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be93ddf1-4abd-42bd-bb5e-d452f0ae91df",
+          "name": "Orbital Submit a TaxiQL query",
+          "request": {
+            "name": "Orbital Submit a TaxiQL query",
+            "description": {
+              "content": "Submits a TaxiQL query to Orbital for execution. Orbital uses the types referenced in the query to look up connected services that expose those values, then builds an integration plan to load the required data from across multiple sources. Queries start with a verb such as find (for finite result sets) or stream (for infinite streams). The response format depends on the Accept header - use application/json for batch results or text/event-stream for streaming results via Server-Sent Events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "taxiql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resultMode",
+                  "value": "RAW",
+                  "description": "Controls how type metadata is included in the response. Set to TYPED to include type metadata with results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22c46e5a-6439-470b-ac26-2d6e58dc5a49",
+              "name": "Successful query execution returning results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "taxiql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resultMode",
+                      "value": "RAW"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"key_0\": 9055,\n      \"key_1\": true\n    },\n    {\n      \"key_0\": false,\n      \"key_1\": 6201.961145092214\n    }\n  ],\n  \"queryId\": \"string\",\n  \"duration\": 5135\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62c05ed0-cdc1-424c-8f79-8610e129e170",
+              "name": "Invalid query syntax or unresolvable types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "taxiql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resultMode",
+                      "value": "RAW"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": 7411\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c46cff0a-23fc-447f-88c3-cf5790bcb0b8",
+              "name": "Internal server error during query execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "taxiql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resultMode",
+                      "value": "RAW"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": 7411\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "79cd2234-dd70-48e0-ac7b-2e6de8671680",
+      "name": "Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17356d70-637a-4a81-bd23-709507fd0acb",
+          "name": "Orbital List registered types",
+          "request": {
+            "name": "Orbital List registered types",
+            "description": {
+              "content": "Returns all semantic types registered in the Orbital workspace from connected API specs, database schemas, and Taxi projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cbd5949b-8fbb-4653-b537-2062e7e83230",
+              "name": "A list of registered types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"qualifiedName\": \"string\",\n    \"kind\": \"SERVICE\",\n    \"sources\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"qualifiedName\": \"string\",\n    \"kind\": \"ENUM\",\n    \"sources\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:9022",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ce2e37ee-c89a-434a-80f3-50c46af2570b",
+    "name": "Orbital Query API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.\n\nContact Support:\n Name: Orbital Support",
+      "type": "text/plain"
+    }
+  }
+}

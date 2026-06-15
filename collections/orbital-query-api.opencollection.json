@@ -1,0 +1,187 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orbital Query API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Taxiql",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital Submit a TaxiQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:9022/api/taxiql",
+            "params": [
+              {
+                "name": "resultMode",
+                "value": "",
+                "type": "query",
+                "description": "Controls how type metadata is included in the response. Set to TYPED to include type metadata with results."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a TaxiQL query to Orbital for execution. Orbital uses the types referenced in the query to look up connected services that expose those values, then builds an integration plan to load the required data from across multiple sources. Queries start with a verb such as find (for finite result sets) or stream (for infinite streams). The response format depends on the Accept header - use application/json for batch results or text/event-stream for streaming results via Server-Sent Events."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/schemas"
+          },
+          "docs": "Returns the schemas and type definitions currently registered in the Orbital workspace, including types from connected API specs, database schemas, and Taxi projects."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List connected services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/services"
+          },
+          "docs": "Returns the list of services currently connected to Orbital, including REST APIs, databases, message queues, and serverless functions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List data source connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/connections"
+          },
+          "docs": "Returns configured connections to external data sources such as databases, APIs, and message brokers."
+        },
+        {
+          "info": {
+            "name": "Orbital Create a data source connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:9022/api/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new connection to an external data source such as a database, REST API, or message broker."
+        },
+        {
+          "info": {
+            "name": "Orbital Get a data source connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific data source connection."
+        },
+        {
+          "info": {
+            "name": "Orbital Delete a data source connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:9022/api/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a data source connection from Orbital."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List registered types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/types"
+          },
+          "docs": "Returns all semantic types registered in the Orbital workspace from connected API specs, database schemas, and Taxi projects."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Caches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List cache configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/caches"
+          },
+          "docs": "Returns information about configured caches. Orbital can use external caches like Redis or Hazelcast, or its built-in per-query cache."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
