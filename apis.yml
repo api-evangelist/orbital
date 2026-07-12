@@ -73,6 +73,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: DomainSecurity
+    url: security/orbital-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/orbital-finance
   - name: Orbital - Automated integration for modern dev teams.
