@@ -73,6 +73,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: AgenticAccess
+    url: agentic-access/orbital-agentic-access.yml
   - type: DomainSecurity
     url: security/orbital-domain-security.yml
   - type: LinkedIn
