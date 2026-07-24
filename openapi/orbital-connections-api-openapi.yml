@@ -1,0 +1,192 @@
+openapi: 3.1.0
+info:
+  title: Orbital Query Caches Connections API
+  description: The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.
+  version: 1.0.0
+  contact:
+    name: Orbital Support
+    url: https://orbitalhq.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:9022
+  description: Local Orbital Server
+tags:
+- name: Connections
+paths:
+  /api/connections:
+    get:
+      operationId: listConnections
+      summary: Orbital List data source connections
+      description: Returns configured connections to external data sources such as databases, APIs, and message brokers.
+      responses:
+        '200':
+          description: A list of data source connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectionEntry'
+      tags:
+      - Connections
+    post:
+      operationId: createConnection
+      summary: Orbital Create a data source connection
+      description: Creates a new connection to an external data source such as a database, REST API, or message broker.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionCreateRequest'
+      responses:
+        '201':
+          description: Connection created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionEntry'
+        '400':
+          description: Invalid connection configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Connections
+  /api/connections/{connectionId}:
+    get:
+      operationId: getConnection
+      summary: Orbital Get a data source connection
+      description: Returns details of a specific data source connection.
+      parameters:
+      - name: connectionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Connection details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionEntry'
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Connections
+    delete:
+      operationId: deleteConnection
+      summary: Orbital Delete a data source connection
+      description: Removes a data source connection from Orbital.
+      parameters:
+      - name: connectionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Connection deleted successfully.
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Connections
+components:
+  schemas:
+    AuthenticationConfig:
+      type: object
+      description: Authentication configuration for a data source connection.
+      properties:
+        type:
+          type: string
+          description: Authentication method.
+          enum:
+          - NONE
+          - BASIC
+          - BEARER_TOKEN
+          - OAUTH2
+          - API_KEY
+        credentials:
+          type: object
+          description: Authentication credentials (format depends on auth type).
+          additionalProperties: true
+    ConnectionEntry:
+      type: object
+      description: A data source connection configuration.
+      properties:
+        connectionId:
+          type: string
+          description: Unique identifier for the connection.
+        name:
+          type: string
+          description: Display name of the connection.
+        connectionType:
+          type: string
+          description: Type of the data source connection.
+          enum:
+          - API
+          - DATABASE
+          - MESSAGE_QUEUE
+          - SERVERLESS_FUNCTION
+        connectionUrl:
+          type: string
+          format: uri
+          description: URL or connection string for the data source.
+        status:
+          type: string
+          description: Current status of the connection.
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - ERROR
+    ConnectionCreateRequest:
+      type: object
+      description: Request body for creating a new data source connection.
+      required:
+      - name
+      - connectionType
+      - connectionUrl
+      properties:
+        name:
+          type: string
+          description: Display name for the connection.
+        connectionType:
+          type: string
+          description: Type of the data source.
+          enum:
+          - API
+          - DATABASE
+          - MESSAGE_QUEUE
+          - SERVERLESS_FUNCTION
+        connectionUrl:
+          type: string
+          format: uri
+          description: URL or connection string for the data source.
+        authentication:
+          $ref: '#/components/schemas/AuthenticationConfig'
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true

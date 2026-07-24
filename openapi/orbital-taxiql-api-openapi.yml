@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: Orbital Query Caches Taxiql API
+  description: The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.
+  version: 1.0.0
+  contact:
+    name: Orbital Support
+    url: https://orbitalhq.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:9022
+  description: Local Orbital Server
+tags:
+- name: Taxiql
+paths:
+  /api/taxiql:
+    post:
+      operationId: submitTaxiQlQuery
+      summary: Orbital Submit a TaxiQL query
+      description: Submits a TaxiQL query to Orbital for execution. Orbital uses the types referenced in the query to look up connected services that expose those values, then builds an integration plan to load the required data from across multiple sources. Queries start with a verb such as find (for finite result sets) or stream (for infinite streams). The response format depends on the Accept header - use application/json for batch results or text/event-stream for streaming results via Server-Sent Events.
+      parameters:
+      - name: resultMode
+        in: query
+        description: Controls how type metadata is included in the response. Set to TYPED to include type metadata with results.
+        required: false
+        schema:
+          type: string
+          enum:
+          - RAW
+          - TYPED
+          default: RAW
+      requestBody:
+        description: A TaxiQL query string to execute against connected data sources.
+        required: true
+        content:
+          application/taxiql:
+            schema:
+              type: string
+            examples:
+              findMovies:
+                summary: Find all movies
+                value: find { Movie[] }
+              findWithProjection:
+                summary: Find movies with specific fields
+                value: "find { Movie[] } as {\n  title: MovieTitle\n  rating: ReviewScore\n}[]"
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Successful query execution returning results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultBatch'
+            text/event-stream:
+              schema:
+                type: string
+                description: Server-Sent Events stream of query results. Each event contains a JSON object representing a single result record.
+        '400':
+          description: Invalid query syntax or unresolvable types.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during query execution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Taxiql
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
+    QueryResultBatch:
+      type: object
+      description: Batch result of a TaxiQL query execution.
+      properties:
+        results:
+          type: array
+          description: Array of result records matching the query.
+          items:
+            type: object
+            additionalProperties: true
+        queryId:
+          type: string
+          description: Unique identifier for this query execution.
+        duration:
+          type: integer
+          description: Query execution duration in milliseconds.

@@ -1,0 +1,246 @@
+openapi: 3.1.0
+info:
+  title: Orbital Query Caches Schemas API
+  description: The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.
+  version: 1.0.0
+  contact:
+    name: Orbital Support
+    url: https://orbitalhq.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:9022
+  description: Local Orbital Server
+tags:
+- name: Schemas
+paths:
+  /api/schemas:
+    get:
+      operationId: listSchemas
+      summary: Orbital List schemas
+      description: Returns the schemas and type definitions currently registered in the Orbital workspace, including types from connected API specs, database schemas, and Taxi projects.
+      responses:
+        '200':
+          description: A list of schemas registered in the workspace.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SchemaEntry'
+      tags:
+      - Schemas
+    post:
+      operationId: createSchema
+      summary: Orbital Register a new schema
+      description: Registers a new schema in the Orbital workspace. The schema can be provided as a Taxi source file, OpenAPI specification, Protobuf definition, or other supported schema format. Orbital parses the schema, extracts type definitions and semantic metadata, and makes the types available for TaxiQL queries.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaCreateRequest'
+      responses:
+        '201':
+          description: Schema registered successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaEntry_2'
+        '400':
+          description: Invalid schema definition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Schemas
+  /api/schemas/{schemaId}:
+    get:
+      operationId: getSchema
+      summary: Orbital Get a schema by ID
+      description: Returns the details of a specific schema registered in the workspace.
+      parameters:
+      - name: schemaId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Schema details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaEntry_2'
+        '404':
+          description: Schema not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Schemas
+    put:
+      operationId: updateSchema
+      summary: Orbital Update a schema
+      description: Updates an existing schema in the workspace. Orbital re-parses the schema, updates type definitions, and refreshes the query engine's understanding of available data sources.
+      parameters:
+      - name: schemaId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaCreateRequest'
+      responses:
+        '200':
+          description: Schema updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaEntry_2'
+        '400':
+          description: Invalid schema definition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Schema not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Schemas
+    delete:
+      operationId: deleteSchema
+      summary: Orbital Delete a schema
+      description: Removes a schema and its associated type definitions from the workspace. Types that are only defined in this schema will no longer be available for TaxiQL queries.
+      parameters:
+      - name: schemaId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Schema deleted successfully.
+        '404':
+          description: Schema not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Schemas
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
+    SchemaEntry_2:
+      type: object
+      description: A schema registered in the Orbital workspace.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the schema.
+        name:
+          type: string
+          description: Human-readable name of the schema.
+        version:
+          type: string
+          description: Version of the schema.
+        source:
+          type: string
+          description: Source format of the schema.
+          enum:
+          - TAXI
+          - OPEN_API
+          - PROTOBUF
+          - AVRO
+          - JSON_SCHEMA
+          - DATABASE
+        content:
+          type: string
+          description: The raw schema content.
+        types:
+          type: array
+          description: Types defined in this schema.
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the schema was registered.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the schema was last updated.
+    SchemaEntry:
+      type: object
+      description: A schema registered in the Orbital workspace.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the schema.
+        name:
+          type: string
+          description: Human-readable name of the schema.
+        version:
+          type: string
+          description: Version of the schema.
+        source:
+          type: string
+          description: Source of the schema (e.g., OpenAPI, Protobuf, database).
+        types:
+          type: array
+          description: Types defined in this schema.
+          items:
+            type: string
+    SchemaCreateRequest:
+      type: object
+      description: Request body for registering or updating a schema.
+      required:
+      - name
+      - source
+      - content
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the schema.
+        source:
+          type: string
+          description: Format of the schema being registered.
+          enum:
+          - TAXI
+          - OPEN_API
+          - PROTOBUF
+          - AVRO
+          - JSON_SCHEMA
+          - DATABASE
+        content:
+          type: string
+          description: The raw schema content. For OpenAPI, provide the YAML or JSON spec. For Taxi, provide the .taxi source. For Protobuf, provide the .proto definition.
+        url:
+          type: string
+          format: uri
+          description: Optional URL to load the schema from instead of providing content inline.

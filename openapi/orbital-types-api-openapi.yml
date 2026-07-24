@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Orbital Query Caches Types API
+  description: The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.
+  version: 1.0.0
+  contact:
+    name: Orbital Support
+    url: https://orbitalhq.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:9022
+  description: Local Orbital Server
+tags:
+- name: Types
+paths:
+  /api/types:
+    get:
+      operationId: listTypes
+      summary: Orbital List registered types
+      description: Returns all semantic types registered in the Orbital workspace from connected API specs, database schemas, and Taxi projects.
+      responses:
+        '200':
+          description: A list of registered types.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TypeEntry'
+      tags:
+      - Types
+  /api/types/{qualifiedName}:
+    get:
+      operationId: getType
+      summary: Orbital Get type details
+      description: Returns detailed information about a specific semantic type, including its definition, the sources that expose it, and the fields it contains.
+      parameters:
+      - name: qualifiedName
+        in: path
+        required: true
+        description: Fully qualified name of the type.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Type details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeDetail'
+        '404':
+          description: Type not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Types
+components:
+  schemas:
+    TypeEntry:
+      type: object
+      description: A semantic type registered in the workspace.
+      properties:
+        qualifiedName:
+          type: string
+          description: Fully qualified name of the type.
+        kind:
+          type: string
+          description: Kind of type definition.
+          enum:
+          - SCALAR
+          - MODEL
+          - ENUM
+          - SERVICE
+        sources:
+          type: array
+          description: Data sources that expose this type.
+          items:
+            type: string
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
+    TypeDetail:
+      type: object
+      description: Detailed information about a semantic type.
+      properties:
+        qualifiedName:
+          type: string
+          description: Fully qualified name of the type.
+        kind:
+          type: string
+          description: Kind of type definition.
+          enum:
+          - SCALAR
+          - MODEL
+          - ENUM
+          - SERVICE
+        fields:
+          type: array
+          description: Fields defined on this type (for MODEL types).
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Field name.
+              type:
+                type: string
+                description: Qualified type name of the field.
+              nullable:
+                type: boolean
+                description: Whether the field is nullable.
+        sources:
+          type: array
+          description: Data sources that expose this type.
+          items:
+            type: string
+        schemaId:
+          type: string
+          description: ID of the schema that defines this type.

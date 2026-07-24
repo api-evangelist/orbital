@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: Orbital Query Caches Services API
+  description: The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.
+  version: 1.0.0
+  contact:
+    name: Orbital Support
+    url: https://orbitalhq.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://localhost:9022
+  description: Local Orbital Server
+tags:
+- name: Services
+paths:
+  /api/services:
+    get:
+      operationId: listServices
+      summary: Orbital List connected services
+      description: Returns the list of services currently connected to Orbital, including REST APIs, databases, message queues, and serverless functions.
+      responses:
+        '200':
+          description: A list of connected services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceEntry'
+      tags:
+      - Services
+  /api/services/{serviceName}:
+    get:
+      operationId: getService
+      summary: Orbital Get service details
+      description: Returns detailed information about a specific connected service, including its operations, types, and connection status.
+      parameters:
+      - name: serviceName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Service details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDetail'
+        '404':
+          description: Service not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Services
+components:
+  schemas:
+    ServiceEntry:
+      type: object
+      description: A service connected to Orbital.
+      properties:
+        name:
+          type: string
+          description: Name of the service.
+        url:
+          type: string
+          format: uri
+          description: Base URL of the service.
+        protocol:
+          type: string
+          description: Protocol type of the service.
+          enum:
+          - REST
+          - gRPC
+          - SOAP
+          - Kafka
+          - Database
+        operationCount:
+          type: integer
+          description: Number of operations exposed by this service.
+        status:
+          type: string
+          description: Current connection status of the service.
+          enum:
+          - CONNECTED
+          - DISCONNECTED
+          - ERROR
+    ServiceDetail:
+      type: object
+      description: Detailed information about a connected service.
+      properties:
+        name:
+          type: string
+          description: Name of the service.
+        url:
+          type: string
+          format: uri
+          description: Base URL of the service.
+        protocol:
+          type: string
+          description: Protocol type of the service.
+          enum:
+          - REST
+          - gRPC
+          - SOAP
+          - Kafka
+          - Database
+        status:
+          type: string
+          description: Current connection status.
+          enum:
+          - CONNECTED
+          - DISCONNECTED
+          - ERROR
+        operations:
+          type: array
+          description: Operations exposed by this service.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Operation name.
+              returnType:
+                type: string
+                description: Qualified type name of the return type.
+              parameters:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+        types:
+          type: array
+          description: Types exposed by this service.
+          items:
+            type: string
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
