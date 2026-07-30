@@ -1,64 +1,186 @@
 aid: orbital
 url: https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/apis.yml
 apis:
-  - aid: orbital:query-api
-    name: Orbital Query API
-    tags:
-      - Data
-      - Gateways
-      - Integration
-      - Queries
-    humanURL: https://orbitalhq.com/docs/querying/writing-queries
-    properties:
-      - url: https://orbitalhq.com/docs/querying/writing-queries
-        type: Documentation
-      - url: openapi/orbital-query-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/query.json
-        type: JSONSchema
-      - url: json-schema/connection.json
-        type: JSONSchema
-      - url: json-schema/cache.json
-        type: JSONSchema
-      - url: json-ld/orbital-context.jsonld
-        type: JSONLD
-    description: >-
-      The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating,
-      transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are
-      submitted to the /api/taxiql endpoint and results can be returned as JSON or streamed via Server-Sent Events. The
-      API also provides endpoints for managing connections and caches.
-  - aid: orbital:schema-management-api
-    name: Orbital Schema Management API
-    tags:
-      - Data
-      - Gateways
-      - Schemas
-      - Types
-    humanURL: https://orbitalhq.com/docs/describing-data-sources/open-api
-    properties:
-      - url: https://orbitalhq.com/docs/describing-data-sources/open-api
-        type: Documentation
-      - url: openapi/orbital-schema-management-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/schema.json
-        type: JSONSchema
-      - url: json-schema/service.json
-        type: JSONSchema
-      - url: json-schema/type.json
-        type: JSONSchema
-      - url: json-ld/orbital-context.jsonld
-        type: JSONLD
-    description: >-
-      The Orbital Schema Management API provides endpoints for managing schemas, types, and data source definitions
-      within an Orbital workspace. It allows developers to register, update, and remove Taxi schemas and type
-      definitions that Orbital uses to understand the semantic relationships between data across connected services.
-      Schemas can originate from OpenAPI specs, Protobuf definitions, database schemas, or Taxi projects.
+- aid: orbital:orbital-caches-api
+  name: Orbital Caches API
+  description: The Caches API from Orbital — 1 operation(s) for caches.
+  humanURL: https://orbitalhq.com/docs/querying/writing-queries
+  tags:
+  - Caches
+  properties:
+  - type: OpenAPI
+    url: openapi/orbital-caches-api-openapi.yml
+  - type: Documentation
+    url: https://orbitalhq.com/docs/querying/writing-queries
+  - type: JSONSchema
+    url: json-schema/query.json
+  - type: JSONSchema
+    url: json-schema/connection.json
+  - type: JSONSchema
+    url: json-schema/cache.json
+  - type: JSONLD
+    url: json-ld/orbital-context.jsonld
+  - type: Documentation
+    url: https://orbitalhq.com/docs/describing-data-sources/open-api
+  - type: JSONSchema
+    url: json-schema/schema.json
+  - type: JSONSchema
+    url: json-schema/service.json
+  - type: JSONSchema
+    url: json-schema/type.json
+- aid: orbital:orbital-connections-api
+  name: Orbital Connections API
+  description: The Connections API from Orbital — 2 operation(s) for connections.
+  humanURL: https://orbitalhq.com/docs/querying/writing-queries
+  tags:
+  - Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/orbital-connections-api-openapi.yml
+  - type: Documentation
+    url: https://orbitalhq.com/docs/querying/writing-queries
+  - type: JSONSchema
+    url: json-schema/query.json
+  - type: JSONSchema
+    url: json-schema/connection.json
+  - type: JSONSchema
+    url: json-schema/cache.json
+  - type: JSONLD
+    url: json-ld/orbital-context.jsonld
+  - type: Documentation
+    url: https://orbitalhq.com/docs/describing-data-sources/open-api
+  - type: JSONSchema
+    url: json-schema/schema.json
+  - type: JSONSchema
+    url: json-schema/service.json
+  - type: JSONSchema
+    url: json-schema/type.json
+- aid: orbital:orbital-schemas-api
+  name: Orbital Schemas API
+  description: The Schemas API from Orbital — 2 operation(s) for schemas.
+  humanURL: https://orbitalhq.com/docs/querying/writing-queries
+  tags:
+  - Schemas
+  properties:
+  - type: OpenAPI
+    url: openapi/orbital-schemas-api-openapi.yml
+  - type: Documentation
+    url: https://orbitalhq.com/docs/querying/writing-queries
+  - type: JSONSchema
+    url: json-schema/query.json
+  - type: JSONSchema
+    url: json-schema/connection.json
+  - type: JSONSchema
+    url: json-schema/cache.json
+  - type: JSONLD
+    url: json-ld/orbital-context.jsonld
+  - type: Documentation
+    url: https://orbitalhq.com/docs/describing-data-sources/open-api
+  - type: JSONSchema
+    url: json-schema/schema.json
+  - type: JSONSchema
+    url: json-schema/service.json
+  - type: JSONSchema
+    url: json-schema/type.json
+- aid: orbital:orbital-services-api
+  name: Orbital Services API
+  description: The Services API from Orbital — 2 operation(s) for services.
+  humanURL: https://orbitalhq.com/docs/querying/writing-queries
+  tags:
+  - Services
+  properties:
+  - type: OpenAPI
+    url: openapi/orbital-services-api-openapi.yml
+  - type: Documentation
+    url: https://orbitalhq.com/docs/querying/writing-queries
+  - type: JSONSchema
+    url: json-schema/query.json
+  - type: JSONSchema
+    url: json-schema/connection.json
+  - type: JSONSchema
+    url: json-schema/cache.json
+  - type: JSONLD
+    url: json-ld/orbital-context.jsonld
+  - type: Documentation
+    url: https://orbitalhq.com/docs/describing-data-sources/open-api
+  - type: JSONSchema
+    url: json-schema/schema.json
+  - type: JSONSchema
+    url: json-schema/service.json
+  - type: JSONSchema
+    url: json-schema/type.json
+- aid: orbital:orbital-taxiql-api
+  name: Orbital Taxiql API
+  description: The Taxiql API from Orbital — 1 operation(s) for taxiql.
+  humanURL: https://orbitalhq.com/docs/querying/writing-queries
+  tags:
+  - Taxiql
+  properties:
+  - type: OpenAPI
+    url: openapi/orbital-taxiql-api-openapi.yml
+  - type: Documentation
+    url: https://orbitalhq.com/docs/querying/writing-queries
+  - type: JSONSchema
+    url: json-schema/query.json
+  - type: JSONSchema
+    url: json-schema/connection.json
+  - type: JSONSchema
+    url: json-schema/cache.json
+  - type: JSONLD
+    url: json-ld/orbital-context.jsonld
+  - type: Documentation
+    url: https://orbitalhq.com/docs/describing-data-sources/open-api
+  - type: JSONSchema
+    url: json-schema/schema.json
+  - type: JSONSchema
+    url: json-schema/service.json
+  - type: JSONSchema
+    url: json-schema/type.json
+- aid: orbital:orbital-types-api
+  name: Orbital Types API
+  description: The Types API from Orbital — 2 operation(s) for types.
+  humanURL: https://orbitalhq.com/docs/querying/writing-queries
+  tags:
+  - Types
+  properties:
+  - type: OpenAPI
+    url: openapi/orbital-types-api-openapi.yml
+  - type: Documentation
+    url: https://orbitalhq.com/docs/querying/writing-queries
+  - type: JSONSchema
+    url: json-schema/query.json
+  - type: JSONSchema
+    url: json-schema/connection.json
+  - type: JSONSchema
+    url: json-schema/cache.json
+  - type: JSONLD
+    url: json-ld/orbital-context.jsonld
+  - type: Documentation
+    url: https://orbitalhq.com/docs/describing-data-sources/open-api
+  - type: JSONSchema
+    url: json-schema/schema.json
+  - type: JSONSchema
+    url: json-schema/service.json
+  - type: JSONSchema
+    url: json-schema/type.json
 name: Orbital
 tags:
   - Data
   - Gateways
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/orbital.png
 access: 3rd-Party
 created: '2026-01-05'
 modified: '2026-05-19'
