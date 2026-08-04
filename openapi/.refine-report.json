@@ -1,0 +1,24 @@
+{
+  "provider": "orbital",
+  "sources": [
+    "orbital-caches-api-openapi.yml",
+    "orbital-connections-api-openapi.yml",
+    "orbital-schemas-api-openapi.yml",
+    "orbital-services-api-openapi.yml",
+    "orbital-taxiql-api-openapi.yml",
+    "orbital-types-api-openapi.yml"
+  ],
+  "outputs": [
+    "orbital-caches-api-openapi.yml",
+    "orbital-connections-api-openapi.yml",
+    "orbital-schemas-api-openapi.yml",
+    "orbital-services-api-openapi.yml",
+    "orbital-taxiql-api-openapi.yml",
+    "orbital-types-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
