@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orbital Query Caches Types API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List registered types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/types"
+          },
+          "docs": "Returns all semantic types registered in the Orbital workspace from connected API specs, database schemas, and Taxi projects."
+        },
+        {
+          "info": {
+            "name": "Orbital Get type details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/types/:qualifiedName",
+            "params": [
+              {
+                "name": "qualifiedName",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified name of the type."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific semantic type, including its definition, the sources that expose it, and the fields it contains."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

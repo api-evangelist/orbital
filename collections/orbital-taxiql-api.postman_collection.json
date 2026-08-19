@@ -1,0 +1,235 @@
+{
+  "item": [
+    {
+      "id": "45ceb541-b124-4882-b697-0e7506ac783e",
+      "name": "Taxiql",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f20bc9b-e06d-4106-8fb5-f7864093ea19",
+          "name": "Orbital Submit a TaxiQL query",
+          "request": {
+            "name": "Orbital Submit a TaxiQL query",
+            "description": {
+              "content": "Submits a TaxiQL query to Orbital for execution. Orbital uses the types referenced in the query to look up connected services that expose those values, then builds an integration plan to load the required data from across multiple sources. Queries start with a verb such as find (for finite result sets) or stream (for infinite streams). The response format depends on the Accept header - use application/json for batch results or text/event-stream for streaming results via Server-Sent Events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "taxiql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resultMode",
+                  "value": "RAW",
+                  "description": "Controls how type metadata is included in the response. Set to TYPED to include type metadata with results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed386038-4727-48af-b618-c993702671a0",
+              "name": "Successful query execution returning results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "taxiql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resultMode",
+                      "value": "RAW"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 2800.066899252236,\n      \"key_1\": \"string\"\n    }\n  ],\n  \"queryId\": \"string\",\n  \"duration\": 7414\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f6f1b9e-4dd8-4bf7-884d-bbe502423197",
+              "name": "Invalid query syntax or unresolvable types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "taxiql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resultMode",
+                      "value": "RAW"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": true,\n    \"key_1\": true,\n    \"key_2\": 6296.745652342217\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29c60d2d-58d5-4f35-bcf0-539bc6254e8e",
+              "name": "Internal server error during query execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "taxiql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resultMode",
+                      "value": "RAW"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": true,\n    \"key_1\": true,\n    \"key_2\": 6296.745652342217\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:9022",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9f309097-b726-460e-a46b-f1f1289c807b",
+    "name": "Orbital Query Caches Taxiql API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.\n\nContact Support:\n Name: Orbital Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "149bc984-ba19-4e6c-90d6-14b60bc6ef50",
+      "name": "Services",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39c72900-794a-4de7-a499-8b512fa40914",
+          "name": "Orbital List connected services",
+          "request": {
+            "name": "Orbital List connected services",
+            "description": {
+              "content": "Returns the list of services currently connected to Orbital, including REST APIs, databases, message queues, and serverless functions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7d201a6-d900-46ae-bf68-ab667e48f619",
+              "name": "A list of connected services.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"url\": \"https://IAStluLM.mjrIeYtfrT.dtORGG2Xl48sywaU+rn2GK5T80eozvz53XbJfFj\",\n    \"protocol\": \"SOAP\",\n    \"operationCount\": 1284,\n    \"status\": \"ERROR\"\n  },\n  {\n    \"name\": \"string\",\n    \"url\": \"http://LzLZvGOAljjl.khzAAkWWXHEi7tMo-FAuQVg\",\n    \"protocol\": \"Kafka\",\n    \"operationCount\": 7524,\n    \"status\": \"CONNECTED\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45f4b0f0-3d80-43a7-9342-599a96c045d9",
+          "name": "Orbital Get service details",
+          "request": {
+            "name": "Orbital Get service details",
+            "description": {
+              "content": "Returns detailed information about a specific connected service, including its operations, types, and connection status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "services",
+                ":serviceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b1d4931-9d0f-4485-8013-4efd0800425c",
+              "name": "Service details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "services",
+                    ":serviceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"url\": \"https://vlwSdJGvDqxaqPSuaPMFMWkzZhC.itsM-XicF4Y+r8fe9Y0TjK-VFtwXM4QpSe0u.RSBcfufzhHk\",\n  \"protocol\": \"REST\",\n  \"status\": \"ERROR\",\n  \"operations\": [\n    {\n      \"name\": \"string\",\n      \"returnType\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"returnType\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"types\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be2706e4-e7cd-4e99-bb29-49eb74132a24",
+              "name": "Service not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "services",
+                    ":serviceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": 8709\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:9022",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "54e5413d-8715-4bf8-a5ca-408f318dba5c",
+    "name": "Orbital Query Caches Services API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.\n\nContact Support:\n Name: Orbital Support",
+      "type": "text/plain"
+    }
+  }
+}

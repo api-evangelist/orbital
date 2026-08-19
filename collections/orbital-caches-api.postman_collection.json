@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "611e5619-af7c-4476-9309-9d34d57a9b34",
+      "name": "Caches",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40f363d0-c4c4-460c-82c2-78f722f0b092",
+          "name": "Orbital List cache configurations",
+          "request": {
+            "name": "Orbital List cache configurations",
+            "description": {
+              "content": "Returns information about configured caches. Orbital can use external caches like Redis or Hazelcast, or its built-in per-query cache.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "caches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d453755-f1b9-46b9-b09e-a5f0a510400a",
+              "name": "A list of cache configurations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "caches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"type\": \"IN_MEMORY\",\n    \"status\": \"INACTIVE\"\n  },\n  {\n    \"name\": \"string\",\n    \"type\": \"IN_MEMORY\",\n    \"status\": \"ACTIVE\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:9022",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "64fdb0fe-4ee1-488a-b191-9e820bdd5e03",
+    "name": "Orbital Query Caches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.\n\nContact Support:\n Name: Orbital Support",
+      "type": "text/plain"
+    }
+  }
+}

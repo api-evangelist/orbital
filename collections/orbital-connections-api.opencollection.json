@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orbital Query Caches Connections API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List data source connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/connections"
+          },
+          "docs": "Returns configured connections to external data sources such as databases, APIs, and message brokers."
+        },
+        {
+          "info": {
+            "name": "Orbital Create a data source connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://localhost:9022/api/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new connection to an external data source such as a database, REST API, or message broker."
+        },
+        {
+          "info": {
+            "name": "Orbital Get a data source connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific data source connection."
+        },
+        {
+          "info": {
+            "name": "Orbital Delete a data source connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://localhost:9022/api/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a data source connection from Orbital."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

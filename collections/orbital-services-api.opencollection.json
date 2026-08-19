@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orbital Query Caches Services API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List connected services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/services"
+          },
+          "docs": "Returns the list of services currently connected to Orbital, including REST APIs, databases, message queues, and serverless functions."
+        },
+        {
+          "info": {
+            "name": "Orbital Get service details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/services/:serviceName",
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific connected service, including its operations, types, and connection status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

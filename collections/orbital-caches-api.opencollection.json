@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orbital Query Caches API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Caches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Orbital List cache configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://localhost:9022/api/caches"
+          },
+          "docs": "Returns information about configured caches. Orbital can use external caches like Redis or Hazelcast, or its built-in per-query cache."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

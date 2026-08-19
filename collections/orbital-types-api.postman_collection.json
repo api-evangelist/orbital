@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "fea13453-7ef7-4491-a0cb-2e0d1e7fd3e1",
+      "name": "Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0cf49d96-7188-4be8-ad40-76459278dca5",
+          "name": "Orbital List registered types",
+          "request": {
+            "name": "Orbital List registered types",
+            "description": {
+              "content": "Returns all semantic types registered in the Orbital workspace from connected API specs, database schemas, and Taxi projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45e6ae55-a350-404e-ac67-1704a2d4b5a7",
+              "name": "A list of registered types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"qualifiedName\": \"string\",\n    \"kind\": \"ENUM\",\n    \"sources\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"qualifiedName\": \"string\",\n    \"kind\": \"MODEL\",\n    \"sources\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f635503d-d512-44a9-9cec-9f46606fa86d",
+          "name": "Orbital Get type details",
+          "request": {
+            "name": "Orbital Get type details",
+            "description": {
+              "content": "Returns detailed information about a specific semantic type, including its definition, the sources that expose it, and the fields it contains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "types",
+                ":qualifiedName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "qualifiedName",
+                  "description": "(Required) Fully qualified name of the type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "315b1db6-fd64-49b6-b4bf-0b28b480dfee",
+              "name": "Type details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "types",
+                    ":qualifiedName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "qualifiedName",
+                      "description": "(Required) Fully qualified name of the type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"qualifiedName\": \"string\",\n  \"kind\": \"SCALAR\",\n  \"fields\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"nullable\": true\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"nullable\": false\n    }\n  ],\n  \"sources\": [\n    \"string\",\n    \"string\"\n  ],\n  \"schemaId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdda2569-fb2d-4b83-918a-3ceee7ee8c8d",
+              "name": "Type not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "types",
+                    ":qualifiedName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "qualifiedName",
+                      "description": "(Required) Fully qualified name of the type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": {\n    \"key_0\": 7092,\n    \"key_1\": \"string\",\n    \"key_2\": 4310\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://localhost:9022",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1cb4889e-66f7-4423-9cfc-e716e9f1993c",
+    "name": "Orbital Query Caches Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.\n\nContact Support:\n Name: Orbital Support",
+      "type": "text/plain"
+    }
+  }
+}
