@@ -60,6 +60,8 @@ apis:
   description: The Schemas API from Orbital — 2 operation(s) for schemas.
   humanURL: https://orbitalhq.com/docs/querying/writing-queries
   tags:
+  - Schema
+  tags_raw:
   - Schemas
   properties:
   - type: OpenAPI
