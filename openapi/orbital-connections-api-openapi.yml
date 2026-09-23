@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Orbital Query Caches Connections API
-  description: The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are written in TaxiQL, a technology-agnostic query language, and submitted to the /api/taxiql endpoint. Results can be returned as a single JSON batch or streamed via Server-Sent Events. Orbital automatically orchestrates the required data fetching across connected services based on semantic type metadata in your API specs.
+  title: Orbital Query Connections API
+  description: The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources.
   version: 1.0.0
   contact:
     name: Orbital Support
@@ -105,22 +105,19 @@ paths:
       - Connections
 components:
   schemas:
-    AuthenticationConfig:
+    ErrorResponse:
       type: object
-      description: Authentication configuration for a data source connection.
+      description: Error response from the Orbital API.
       properties:
-        type:
+        message:
           type: string
-          description: Authentication method.
-          enum:
-          - NONE
-          - BASIC
-          - BEARER_TOKEN
-          - OAUTH2
-          - API_KEY
-        credentials:
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
           type: object
-          description: Authentication credentials (format depends on auth type).
+          description: Additional error details.
           additionalProperties: true
     ConnectionEntry:
       type: object
@@ -176,17 +173,20 @@ components:
           description: URL or connection string for the data source.
         authentication:
           $ref: '#/components/schemas/AuthenticationConfig'
-    ErrorResponse:
+    AuthenticationConfig:
       type: object
-      description: Error response from the Orbital API.
+      description: Authentication configuration for a data source connection.
       properties:
-        message:
+        type:
           type: string
-          description: Human-readable error message.
-        code:
-          type: string
-          description: Error code identifying the type of error.
-        details:
+          description: Authentication method.
+          enum:
+          - NONE
+          - BASIC
+          - BEARER_TOKEN
+          - OAUTH2
+          - API_KEY
+        credentials:
           type: object
-          description: Additional error details.
+          description: Authentication credentials (format depends on auth type).
           additionalProperties: true

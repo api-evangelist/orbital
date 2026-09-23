@@ -1,12 +1,8 @@
 {
   "provider": "orbital",
   "sources": [
-    "orbital-caches-api-openapi.yml",
-    "orbital-connections-api-openapi.yml",
-    "orbital-schemas-api-openapi.yml",
-    "orbital-services-api-openapi.yml",
-    "orbital-taxiql-api-openapi.yml",
-    "orbital-types-api-openapi.yml"
+    "_original/orbital-query-api-openapi.yml",
+    "_original/orbital-schema-management-api-openapi.yml"
   ],
   "outputs": [
     "orbital-caches-api-openapi.yml",
@@ -19,6 +15,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "orbital-query-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "orbital-schema-management-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Schemas' spans 2 source specs (orbital-query-api-openapi.yml, orbital-schema-management-api-openapi.yml): per-path servers applied",
+    "tag 'Services' spans 2 source specs (orbital-query-api-openapi.yml, orbital-schema-management-api-openapi.yml): per-path servers applied",
+    "tag 'Types' spans 2 source specs (orbital-query-api-openapi.yml, orbital-schema-management-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "orbital-caches-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orbital-connections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orbital-schemas-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orbital-services-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orbital-taxiql-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orbital-types-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
