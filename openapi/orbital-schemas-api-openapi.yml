@@ -169,6 +169,34 @@ components:
           description: Types defined in this schema.
           items:
             type: string
+    SchemaCreateRequest:
+      type: object
+      description: Request body for registering or updating a schema.
+      required:
+      - name
+      - source
+      - content
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the schema.
+        source:
+          type: string
+          description: Format of the schema being registered.
+          enum:
+          - TAXI
+          - OPEN_API
+          - PROTOBUF
+          - AVRO
+          - JSON_SCHEMA
+          - DATABASE
+        content:
+          type: string
+          description: The raw schema content. For OpenAPI, provide the YAML or JSON spec. For Taxi, provide the .taxi source. For Protobuf, provide the .proto definition.
+        url:
+          type: string
+          format: uri
+          description: Optional URL to load the schema from instead of providing content inline.
     ErrorResponse:
       type: object
       description: Error response from the Orbital API.
@@ -222,34 +250,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the schema was last updated.
-    SchemaCreateRequest:
-      type: object
-      description: Request body for registering or updating a schema.
-      required:
-      - name
-      - source
-      - content
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the schema.
-        source:
-          type: string
-          description: Format of the schema being registered.
-          enum:
-          - TAXI
-          - OPEN_API
-          - PROTOBUF
-          - AVRO
-          - JSON_SCHEMA
-          - DATABASE
-        content:
-          type: string
-          description: The raw schema content. For OpenAPI, provide the YAML or JSON spec. For Taxi, provide the .taxi source. For Protobuf, provide the .proto definition.
-        url:
-          type: string
-          format: uri
-          description: Optional URL to load the schema from instead of providing content inline.
 x-refined-from:
 - orbital-query-api-openapi.yml
 - orbital-schema-management-api-openapi.yml

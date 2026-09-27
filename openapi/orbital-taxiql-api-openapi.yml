@@ -75,20 +75,6 @@ paths:
       - Taxiql
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response from the Orbital API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: string
-          description: Error code identifying the type of error.
-        details:
-          type: object
-          description: Additional error details.
-          additionalProperties: true
     QueryResultBatch:
       type: object
       description: Batch result of a TaxiQL query execution.
@@ -105,3 +91,17 @@ components:
         duration:
           type: integer
           description: Query execution duration in milliseconds.
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true

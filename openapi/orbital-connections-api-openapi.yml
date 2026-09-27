@@ -105,6 +105,23 @@ paths:
       - Connections
 components:
   schemas:
+    AuthenticationConfig:
+      type: object
+      description: Authentication configuration for a data source connection.
+      properties:
+        type:
+          type: string
+          description: Authentication method.
+          enum:
+          - NONE
+          - BASIC
+          - BEARER_TOKEN
+          - OAUTH2
+          - API_KEY
+        credentials:
+          type: object
+          description: Authentication credentials (format depends on auth type).
+          additionalProperties: true
     ErrorResponse:
       type: object
       description: Error response from the Orbital API.
@@ -173,20 +190,3 @@ components:
           description: URL or connection string for the data source.
         authentication:
           $ref: '#/components/schemas/AuthenticationConfig'
-    AuthenticationConfig:
-      type: object
-      description: Authentication configuration for a data source connection.
-      properties:
-        type:
-          type: string
-          description: Authentication method.
-          enum:
-          - NONE
-          - BASIC
-          - BEARER_TOKEN
-          - OAUTH2
-          - API_KEY
-        credentials:
-          type: object
-          description: Authentication credentials (format depends on auth type).
-          additionalProperties: true
