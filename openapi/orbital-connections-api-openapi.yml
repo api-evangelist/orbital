@@ -105,6 +105,31 @@ paths:
       - Connections
 components:
   schemas:
+    ConnectionCreateRequest:
+      type: object
+      description: Request body for creating a new data source connection.
+      required:
+      - name
+      - connectionType
+      - connectionUrl
+      properties:
+        name:
+          type: string
+          description: Display name for the connection.
+        connectionType:
+          type: string
+          description: Type of the data source.
+          enum:
+          - API
+          - DATABASE
+          - MESSAGE_QUEUE
+          - SERVERLESS_FUNCTION
+        connectionUrl:
+          type: string
+          format: uri
+          description: URL or connection string for the data source.
+        authentication:
+          $ref: '#/components/schemas/AuthenticationConfig'
     AuthenticationConfig:
       type: object
       description: Authentication configuration for a data source connection.
@@ -121,20 +146,6 @@ components:
         credentials:
           type: object
           description: Authentication credentials (format depends on auth type).
-          additionalProperties: true
-    ErrorResponse:
-      type: object
-      description: Error response from the Orbital API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: string
-          description: Error code identifying the type of error.
-        details:
-          type: object
-          description: Additional error details.
           additionalProperties: true
     ConnectionEntry:
       type: object
@@ -165,28 +176,17 @@ components:
           - ACTIVE
           - INACTIVE
           - ERROR
-    ConnectionCreateRequest:
+    ErrorResponse:
       type: object
-      description: Request body for creating a new data source connection.
-      required:
-      - name
-      - connectionType
-      - connectionUrl
+      description: Error response from the Orbital API.
       properties:
-        name:
+        message:
           type: string
-          description: Display name for the connection.
-        connectionType:
+          description: Human-readable error message.
+        code:
           type: string
-          description: Type of the data source.
-          enum:
-          - API
-          - DATABASE
-          - MESSAGE_QUEUE
-          - SERVERLESS_FUNCTION
-        connectionUrl:
-          type: string
-          format: uri
-          description: URL or connection string for the data source.
-        authentication:
-          $ref: '#/components/schemas/AuthenticationConfig'
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
