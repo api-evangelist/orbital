@@ -105,48 +105,6 @@ paths:
       - Connections
 components:
   schemas:
-    ConnectionCreateRequest:
-      type: object
-      description: Request body for creating a new data source connection.
-      required:
-      - name
-      - connectionType
-      - connectionUrl
-      properties:
-        name:
-          type: string
-          description: Display name for the connection.
-        connectionType:
-          type: string
-          description: Type of the data source.
-          enum:
-          - API
-          - DATABASE
-          - MESSAGE_QUEUE
-          - SERVERLESS_FUNCTION
-        connectionUrl:
-          type: string
-          format: uri
-          description: URL or connection string for the data source.
-        authentication:
-          $ref: '#/components/schemas/AuthenticationConfig'
-    AuthenticationConfig:
-      type: object
-      description: Authentication configuration for a data source connection.
-      properties:
-        type:
-          type: string
-          description: Authentication method.
-          enum:
-          - NONE
-          - BASIC
-          - BEARER_TOKEN
-          - OAUTH2
-          - API_KEY
-        credentials:
-          type: object
-          description: Authentication credentials (format depends on auth type).
-          additionalProperties: true
     ConnectionEntry:
       type: object
       description: A data source connection configuration.
@@ -176,6 +134,23 @@ components:
           - ACTIVE
           - INACTIVE
           - ERROR
+    AuthenticationConfig:
+      type: object
+      description: Authentication configuration for a data source connection.
+      properties:
+        type:
+          type: string
+          description: Authentication method.
+          enum:
+          - NONE
+          - BASIC
+          - BEARER_TOKEN
+          - OAUTH2
+          - API_KEY
+        credentials:
+          type: object
+          description: Authentication credentials (format depends on auth type).
+          additionalProperties: true
     ErrorResponse:
       type: object
       description: Error response from the Orbital API.
@@ -190,3 +165,28 @@ components:
           type: object
           description: Additional error details.
           additionalProperties: true
+    ConnectionCreateRequest:
+      type: object
+      description: Request body for creating a new data source connection.
+      required:
+      - name
+      - connectionType
+      - connectionUrl
+      properties:
+        name:
+          type: string
+          description: Display name for the connection.
+        connectionType:
+          type: string
+          description: Type of the data source.
+          enum:
+          - API
+          - DATABASE
+          - MESSAGE_QUEUE
+          - SERVERLESS_FUNCTION
+        connectionUrl:
+          type: string
+          format: uri
+          description: URL or connection string for the data source.
+        authentication:
+          $ref: '#/components/schemas/AuthenticationConfig'

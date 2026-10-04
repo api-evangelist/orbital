@@ -169,20 +169,6 @@ components:
           description: Types defined in this schema.
           items:
             type: string
-    ErrorResponse:
-      type: object
-      description: Error response from the Orbital API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: string
-          description: Error code identifying the type of error.
-        details:
-          type: object
-          description: Additional error details.
-          additionalProperties: true
     SchemaCreateRequest:
       type: object
       description: Request body for registering or updating a schema.
@@ -211,6 +197,20 @@ components:
           type: string
           format: uri
           description: Optional URL to load the schema from instead of providing content inline.
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
     SchemaEntry_2:
       type: object
       description: A schema registered in the Orbital workspace.
