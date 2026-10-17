@@ -134,6 +134,20 @@ components:
           - ACTIVE
           - INACTIVE
           - ERROR
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
     AuthenticationConfig:
       type: object
       description: Authentication configuration for a data source connection.
@@ -150,20 +164,6 @@ components:
         credentials:
           type: object
           description: Authentication credentials (format depends on auth type).
-          additionalProperties: true
-    ErrorResponse:
-      type: object
-      description: Error response from the Orbital API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: string
-          description: Error code identifying the type of error.
-        details:
-          type: object
-          description: Additional error details.
           additionalProperties: true
     ConnectionCreateRequest:
       type: object

@@ -86,20 +86,6 @@ components:
           description: Data sources that expose this type.
           items:
             type: string
-    ErrorResponse:
-      type: object
-      description: Error response from the Orbital API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: string
-          description: Error code identifying the type of error.
-        details:
-          type: object
-          description: Additional error details.
-          additionalProperties: true
     TypeDetail:
       type: object
       description: Detailed information about a semantic type.
@@ -138,6 +124,20 @@ components:
         schemaId:
           type: string
           description: ID of the schema that defines this type.
+    ErrorResponse:
+      type: object
+      description: Error response from the Orbital API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: string
+          description: Error code identifying the type of error.
+        details:
+          type: object
+          description: Additional error details.
+          additionalProperties: true
 x-refined-from:
 - orbital-query-api-openapi.yml
 - orbital-schema-management-api-openapi.yml
