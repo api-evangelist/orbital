@@ -1,4 +1,4 @@
-# Orbital (orbital)
+# Orbital
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,84 +66,150 @@
 
 Orbital is a data gateway and integration platform that connects APIs, databases, event streams, and other data sources without requiring glue code or manual integration maintenance. The platform delivers self-repairing integrations through instant, on-the-fly orchestration that automatically adapts as APIs and schemas evolve, eliminating the need to write resolvers, generate API clients, or maintain YAML mapping files.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/orbital/refs/heads/main/apis.yml)
+**Areas:** Data · Gateways
 
-## Scope
+## Orbital on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Orbital is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/orbital/](https://apis.io/providers/orbital/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Data
-- Gateways
+- [Orbital Caches API](https://apis.io/apis/orbital/orbital-caches-api/) — The Caches API from Orbital — 1 operation(s) for caches.
+- [Orbital Connections API](https://apis.io/apis/orbital/orbital-connections-api/) — The Connections API from Orbital — 2 operation(s) for connections.
+- [Orbital Schemas API](https://apis.io/apis/orbital/orbital-schemas-api/) — The Schemas API from Orbital — 2 operation(s) for schemas.
+- [Orbital Services API](https://apis.io/apis/orbital/orbital-services-api/) — The Services API from Orbital — 2 operation(s) for services.
+- [Orbital Taxiql API](https://apis.io/apis/orbital/orbital-taxiql-api/) — The Taxiql API from Orbital — 1 operation(s) for taxiql.
+- [Orbital Types API](https://apis.io/apis/orbital/orbital-types-api/) — The Types API from Orbital — 2 operation(s) for types.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-01-05
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Orbital Query API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Orbital Query API allows developers to submit TaxiQL queries to the Orbital data gateway for integrating, transforming, and discovering data across APIs, databases, event streams, and other data sources. Queries are submitted to the /api/taxiql endpoint and results can be returned as JSON or streamed via Server-Sent Events. The API also provides endpoints for managing connections and caches.
+- [Orbital Agentic Access](https://apis.io/agentic-access/orbital/orbital-agentic-access/)
 
-- **Human URL:** [https://orbitalhq.com/docs/querying/writing-queries](https://orbitalhq.com/docs/querying/writing-queries)
+#### JSON Schema (6)
 
-#### Tags
+The data models the API reads and writes.
 
-- Data
-- Gateways
-- Integration
-- Queries
+- [Orbital Cache](https://apis.io/schemas/orbital/cache/)
+- [Orbital Connection](https://apis.io/schemas/orbital/connection/)
+- [Orbital Query](https://apis.io/schemas/orbital/query/)
+- [Orbital Schema](https://apis.io/schemas/orbital/schema/)
+- [Orbital Service](https://apis.io/schemas/orbital/service/)
+- [Orbital Type](https://apis.io/schemas/orbital/type/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://orbitalhq.com/docs/querying/writing-queries)
-- [OpenAPI](openapi/orbital-query-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/orbital-query-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/orbital-query-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/query.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/connection.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cache.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/orbital-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Linked-data contexts for the provider's vocabulary.
 
-### Orbital Schema Management API
+- [Orbital Context](https://apis.io/jsonld/orbital/orbital-context/)
 
-The Orbital Schema Management API provides endpoints for managing schemas, types, and data source definitions within an Orbital workspace. It allows developers to register, update, and remove Taxi schemas and type definitions that Orbital uses to understand the semantic relationships between data across connected services. Schemas can originate from OpenAPI specs, Protobuf definitions, database schemas, or Taxi projects.
+#### Collections (8)
 
-- **Human URL:** [https://orbitalhq.com/docs/describing-data-sources/open-api](https://orbitalhq.com/docs/describing-data-sources/open-api)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Orbital Query Caches API](https://apis.io/collections/orbital/open-orbital-caches-api/)
+- [Orbital Query Caches Connections API](https://apis.io/collections/orbital/open-orbital-connections-api/)
+- [Orbital Query API](https://apis.io/collections/orbital/open-orbital-query-api/)
+- [Orbital Schema Management API](https://apis.io/collections/orbital/open-orbital-schema-management-api/)
+- [Orbital Query Caches Schemas API](https://apis.io/collections/orbital/open-orbital-schemas-api/)
+- [Orbital Query Caches Services API](https://apis.io/collections/orbital/open-orbital-services-api/)
+- [Orbital Query Caches Taxiql API](https://apis.io/collections/orbital/open-orbital-taxiql-api/)
+- [Orbital Query Caches Types API](https://apis.io/collections/orbital/open-orbital-types-api/)
 
-- Data
-- Gateways
-- Schemas
-- Types
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://orbitalhq.com/docs/describing-data-sources/open-api)
-- [OpenAPI](openapi/orbital-schema-management-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/orbital-schema-management-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/orbital-schema-management-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/service.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/type.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/orbital-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Orbital — jsonschema rules](https://apis.io/rules/orbital/orbital-jsonschema-spectral-rules/)
 
-## Common Properties
+#### Security (1)
 
-- [LinkedIn](https://www.linkedin.com/company/orbital-finance)
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Orbital Domain Security](https://apis.io/security/orbital/orbital-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Orbital Plans Pricing](https://apis.io/plans/orbital/orbital-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Orbital Rate Limits](https://apis.io/rate-limits/orbital/orbital-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Orbital Finops](https://apis.io/finops/orbital/orbital-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://orbitalhq.com/)
 - [Documentation](https://orbitalhq.com/docs)
-- [Changelog](https://orbitalhq.com/changelog)
 - [Pricing](https://orbitalhq.com/pricing)
+- [Changelog](https://orbitalhq.com/changelog)
 - [Blog](https://orbitalhq.com/blog)
-- [L L Ms Txt](https://orbitalhq.com/llms.txt)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 57.2 |
+| Contract governance | 9.8 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 18.4 |
+
+**Agent readiness 23.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/orbital/](https://apis.io/providers/orbital/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Orbital: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/orbital/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
